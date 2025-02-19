@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan Management</title>
+  <link rel="stylesheet" href="css/main.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  
+    body {
+      display: flex;
+      background-color: #f8f9fa;
+      margin: 0;
+      font-family: 'Cabin', sans-serif;
+    }
+  
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(135deg, #5C8374, #8AA7A2);
+      color: #fff;
+      height: 100vh;
+      padding-top: 20px;
+      position: fixed;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+    .sidebar h4 {
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .sidebar a {
+      padding: 15px 20px;
+      text-decoration: none;
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+      transition: background 0.3s ease, padding-left 0.3s ease;
+    }
+    .sidebar a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      padding-left: 25px;
+    }
+   
+    .content {
+      margin-left: 250px;
+      padding: 20px;
+      width: 100%;
+    }
+      
+       .navbar {
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-bottom: 2px solid #5C8374;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar-brand {
+      font-family: 'Cabin', sans-serif;
+      font-size: 1.75rem;
+      color: #5C8374;
+      font-weight: 700;
+    }
+    .dropdown .btn {
+      border: none;
+      font-size: 1rem;
+      background-color: #5C8374;
+      color: #fff;
+      border-radius: 30px;
+      padding: 8px 15px;
+      transition: background-color 0.3s ease;
+    }
+    .dropdown .btn:hover {
+      background-color: #49736a;
+    }
+    .dropdown-menu {
+      min-width: 150px;
+    }
+    
+ 
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+      }
+      .navbar-brand {
+        margin-bottom: 10px;
+      }
+      .dropdown {
+        width: 100%;
+        text-align: right;
+      }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-shadow: none;
+      }
+      .content {
+        margin-left: 0;
+      }
+    }
+   
+    .plan-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .plan-buttons button {
+      margin-right: 10px;
+    }
+    #searchBox {
+      width: 300px;
+      padding: 5px;
+      border-radius: 5px ;
+    }
+    
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .table th, .table td {
+      padding: 10px;
+      border: #a3aea9;
+      
+    
+    }
+    .table th{
+        background-color:#ccd9d3;
+        /* border: #5C8374; */
+        border: #a3aea9;;
+    }
+
+ 
+    .table tbody tr:hover {
+      background-color: #f0f8ff;
+      cursor: pointer;
+      
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h4 class="text-center mt-5"> <u>Power Panel</u></h4>
+    <a href="AdminDashboard.html" onclick="showPage('subscribers')"><i class="fas fa-users"></i> Subscribers List</a>
+    <a href="adminplan.html" onclick="showPage('planManagement')"><i class="fas fa-tasks"></i> Plan Management</a>
+    <a href="AdminAnalytics.html" onclick="showPage('rechargeAnalytics')"><i class="fas fa-chart-bar"></i> Recharge Analytics</a>
+  </div>
+  <div class="content">
+    <nav class="navbar navbar-light">
+        <span class="navbar-brand mb-0 h1">Mobi-Comm</span>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle"></i> Admin
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="AdminAccount.html">My Account</a></li>
+            <li><a class="dropdown-item" href="AdminLogin.html">Log Out</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    <div id="planManagement" class="page">
+      <h2><i class="fas fa-tasks mt-4 text-primary"></i> <span class="text-primary"> Plan Management</span></h2>
+      <br>
+      <div class="plan-controls">
+        <div class="plan-buttons">
+          <button class="btn btn-danger" onclick="createPlan()">Create Plan</button>
+          <button class="btn btn-warning" onclick="modifyPlan()">Modify Plan</button>
+          <button class="btn btn-success" onclick="deletePlan()">Delete Plan</button>
+        </div>
+        <input type="text" id="searchBox" placeholder="Filter plans..." onkeyup="filterPlans()">
+      </div><hr>
+      <table class="table table-bordered  table-hover">
+        <thead >
+          <tr>
+            <th>#</th>
+            <th>Plan Price</th>
+            <th>Plan Name</th>
+            <th>Validity</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="planList">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <
+  <script>
+    let plans = [
+      { price: "₹299", name: "Popular Plans", validity: "28 Days", details: "Best for casual users" },
+      { price: "₹499", name: "Validity Plans", validity: "84 Days", details: "Long-term validity" },
+      { price: "₹799", name: "Unlimited Data Plans", validity: "56 Days", details: "Enjoy truly unlimited data and calls anytime." },
+      { price: "₹999", name: "Premium Plans", validity: "90 Days", details: "Includes premium services and extra benefits." },
+      { price: "₹199", name: "Basic Plans", validity: "14 Days", details: "Affordable plans with essential benefits." },
+      { price: "₹1299", name: "Enterprise Plans", validity: "120 Days", details: "Best for business users with large data needs." },
+      { price: "₹159", name: "Starter Plans", validity: "7 Days", details: "Short-term plans for quick usage." },
+      { price: "₹699", name: "Family Plans", validity: "60 Days", details: "Shared benefits for family members." }
+    ];
+
+    function loadPlans() {
+      let planList = document.getElementById("planList");
+      planList.innerHTML = "";
+      plans.forEach((plan, index) => {
+        planList.innerHTML += `<tr>
+          <td>${index + 1}</td>
+          <td>${plan.price}</td>
+          <td>${plan.name}</td>
+          <td>${plan.validity}</td>
+          <td>${plan.details}</td>
+        </tr>`;
+      });
+    }
+
+    function filterPlans() {
+      let query = document.getElementById("searchBox").value.toLowerCase();
+      let filteredPlans = plans.filter(plan =>
+        plan.name.toLowerCase().includes(query) ||
+        plan.details.toLowerCase().includes(query) ||
+        plan.price.includes(query) ||
+        plan.validity.includes(query)
+      );
+      let planList = document.getElementById("planList");
+      planList.innerHTML = "";
+      filteredPlans.forEach((plan, index) => {
+        planList.innerHTML += `<tr>
+          <td>${index + 1}</td>
+          <td>${plan.price}</td>
+          <td>${plan.name}</td>
+          <td>${plan.validity}</td>
+          <td>${plan.details}</td>
+        </tr>`;
+      });
+    }
+
+    function createPlan() {
+      let price = prompt("Enter Plan Price:");
+      let name = prompt("Enter Plan Name:");
+      let validity = prompt("Enter Plan Validity:");
+      let details = prompt("Enter Plan Details:");
+      if (price && name && validity && details) {
+        plans.push({ price, name, validity, details });
+        loadPlans();
+      }
+    }
+
+    function modifyPlan() {
+      let index = prompt("Enter plan number to modify (1 to " + plans.length + "):") - 1;
+      if (index >= 0 && index < plans.length) {
+        plans[index].price = prompt("Enter new Plan Price:", plans[index].price);
+        plans[index].name = prompt("Enter new Plan Name:", plans[index].name);
+        plans[index].validity = prompt("Enter new Plan Validity:", plans[index].validity);
+        plans[index].details = prompt("Enter new Plan Details:", plans[index].details);
+        loadPlans();
+      }
+    }
+
+    function deletePlan() {
+      let index = prompt("Enter plan number to delete (1 to " + plans.length + "):") - 1;
+      if (index >= 0 && index < plans.length) {
+        plans.splice(index, 1);
+        loadPlans();
+      }
+    }
+
+    loadPlans();
+  </script>
+</body>
+</html>

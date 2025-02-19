@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recharge Analytics</title>
+  <link rel="stylesheet" href="css/main.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flot"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+   
+    body {
+      display: flex;
+      background-color: #f8f9fa;
+      margin: 0;
+      font-family: 'Cabin', sans-serif;
+    }
+  
+    .sidebar {
+      width: 250px;
+      background: linear-gradient(135deg, #5C8374, #8AA7A2);
+      color: #fff;
+      height: 100vh;
+      padding-top: 20px;
+      position: fixed;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+    .sidebar h4 {
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .sidebar a {
+      padding: 15px 20px;
+      text-decoration: none;
+      display: block;
+      color: #fff;
+      font-size: 1rem;
+      transition: background 0.3s ease, padding-left 0.3s ease;
+    }
+    .sidebar a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      padding-left: 25px;
+    }
+   
+    .content {
+      margin-left: 250px;
+      padding: 20px;
+      width: 100%;
+    }
+  
+    .navbar {
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-bottom: 2px solid #5C8374;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar-brand {
+      font-family: 'Cabin', sans-serif;
+      font-size: 1.75rem;
+      color: #5C8374;
+      font-weight: 700;
+    }
+    .navbar .search-input {
+      width: 300px;
+      margin-right: 20px;
+    }
+    .navbar .dropdown .btn {
+      border: none;
+      font-size: 1rem;
+      background-color: #5C8374;
+      color: #fff;
+      border-radius: 30px;
+      padding: 8px 15px;
+      transition: background-color 0.3s ease;
+    }
+    .navbar .dropdown .btn:hover {
+      background-color: #49736a;
+    }
+    .dropdown-menu {
+      min-width: 150px;
+    }
+    /* Dashboard Cards */
+    .dashboard-cards {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 30%;
+      margin-bottom: 20px;
+    }
+  
+    .chart-container {
+      width: 80%;
+      margin-top: 30px;
+    }
+    .progress-container {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h4 class="text-center mt-5"><u>Power Panel</u></h4>
+    <a href="AdminDashboard.html" onclick="showPage('subscribers')"><i class="fas fa-users"></i> Subscribers List</a>
+    <a href="Adminplan.html" onclick="showPage('planManagement')"><i class="fas fa-tasks"></i> Plan Management</a>
+    <a href="AdminAnalytics.html" onclick="showPage('rechargeAnalytics')"><i class="fas fa-chart-bar"></i> Recharge Analytics</a>
+  </div>
+  <!-- Content -->
+  <div class="content">
+    <nav class="navbar navbar-light">
+      <span class="navbar-brand mb-0 h1">Mobi-Comm</span>
+      <div class="d-flex align-items-center">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle"></i> Admin
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="AdminAccount.html">My Account</a></li>
+            <li><a class="dropdown-item" href="AdminLogin.html">Log Out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="rechargeAnalytics" class="page">
+      <h2><i class="fas fa-chart-bar mt-4 mb-4 text-primary"></i> <span class="text-primary"> Recharge Analytics</span></h2>
+      <div class="dashboard-cards">
+        <div class="card">
+          <h4>Total Customers</h4>
+          <p>500</p>
+        </div>
+        <div class="card">
+          <h4>Plans Available</h4>
+          <p>20</p>
+        </div>
+        <div class="card">
+          <h4>Transaction Reports</h4>
+          <p>15,000 Transactions</p>
+        </div>
+      </div>
+      <br>
+
+      <h4>Monthly Growth</h4>
+      <div class="chart-container">
+        <canvas id="rechargeChart"></canvas>
+      </div>
+      <div class="progress-container">
+       
+        <div class="progress">
+          <div class="progress-bar bg-secondary" style="width: 75%">75%</div>
+        </div>
+      </div>
+      <br><br>
+      <!-- Modified Pie Chart Container with Title and Reduced Size -->
+      <div class="chart-container" style="max-width:400px; margin:auto;">
+        <h4 style="text-align:center; color:#1f4436;">Payment Methods</h4>
+        <canvas id="paymentMethodChart" style="max-height:400px;"></canvas>
+      </div>
+      <!-- Modified Flot Chart Container with Title and Reduced Size -->
+      <div class="chart-container" id="flotChart" style="max-width:400px; margin:auto; height:300px;">
+      
+      </div>
+    </div>
+  </div>
+  <script>
+    var ctx = document.getElementById('rechargeChart').getContext('2d');
+    var rechargeChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Total Recharges',
+          data: [500, 700, 900, 1200, 1400, 1600],
+          backgroundColor: 'rgba(54, 162, 235, 0.5)'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    
+    var paymentCtx = document.getElementById('paymentMethodChart').getContext('2d');
+    var paymentMethodChart = new Chart(paymentCtx, {
+      type: 'pie',
+      data: {
+        labels: ['UPI', 'Credit Card', 'Net Banking', 'Wallets', 'Others'],
+        datasets: [{
+          data: [40, 25, 15, 10, 10],
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+        }]
+      }
+    });
+    
+    $(function() {
+      var data = [
+        { label: "Plan A", data: 40 },
+        { label: "Plan B", data: 30 },
+        { label: "Plan C", data: 20 },
+        { label: "Plan D", data: 10 }
+      ];
+      $.plot("#flotChart", data, {
+        series: { pie: { show: true } },
+        legend: { show: false }
+      });
+    });
+  </script>
+</body>
+</html>

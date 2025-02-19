@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Plans</title>
+    <link rel="stylesheet" href="css/main.min.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+
+
+    <style>
+
+  
+    .navbar {
+      background-color: #234331;
+    }
+    .navbar-brand, .nav-link, .navbar-text {
+      color: white !important; 
+    }
+
+    .dropdown-item{
+        color: black;
+    }
+
+    #vertical-nav-bar .nav-link {
+    color: black !important;
+}
+
+      .recommended-card {
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        transition: transform 0.3s ease-in-out;
+        height: 100%;
+      }
+      .recommended-card:hover {
+        transform: scale(1.05);
+      }
+      .recommended-card img {
+        max-width: 100%;
+        border-radius: 10px;
+      }
+      .nav-pills .nav-link.active {
+        background-color: #FFB000;
+      }
+      .plan-card {
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .plan-card h5 {
+        font-size: 1.5rem;
+      }
+      .batch {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #ff5733;
+        color: white;
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        border-radius: 5px;
+      }
+       
+      .custom-btn:hover{
+        background-color:#5C8374 ;
+        color: black;
+      }
+
+      .footer {
+      background-color: #234331;
+      color: white;
+      padding: 10px 0;
+      margin-top: 70px;
+      text-align: left;
+    }
+    .footer a {
+      color: white;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer .col-md-4:last-child {
+    padding-left: 240px; 
+    text-align: left; 
+}
+    .social-icons i {
+      font-size: 20px;
+      margin: 0 10px;
+    }
+
+    .social-icons i:hover{
+      color: #FFB000; 
+    }
+
+    </style>
+  </head>
+  <body>
+   <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="Homepage.html">Mobi-Comm</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item ms-4">
+                <a class="nav-link" href="Homepage.html">Home</a>
+              </li>
+          
+              <li class="nav-item ms-4">
+                <a class="nav-link" href="PlansPage2.html">Plans</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+            <div class="dropdown ms-3">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                <i class="fas fa-user"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="MyAccount.html">My Account</a></li>
+                <li><a class="dropdown-item" href="LoginUser.html">Sign Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    
+
+    <br>
+    <!-- Recommended Plans -->
+    <div class="container mt-4">
+      <h3 class="text-center display-6 text-secondary"><b>Recommended </b>Plans</h3>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <div class="card recommended-card p-4 position-relative">
+            <h5 class="text-center"><mark>₹330+</mark></h5>
+            <p class="text-center">50GB Data | 30 Days Validity</p>
+            <ul>
+              <li>Unlimited Calls</li>
+              <li>100 SMS/Day</li>
+              <li>Free Netflix Subscription</li>
+            </ul>
+            <button class="btn btn-primary w-100 custom-btn" onclick="window.location.href='Payment.html'">Buy Now</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card recommended-card p-4 position-relative">
+            <h5 class="text-center"><mark>₹250+</mark></h5>
+            <p class="text-center">30GB Data | 30 Days Validity</p>
+            <ul>
+              <li>Unlimited Calls</li>
+              <li>50 SMS/Day</li>
+              <li>Free Amazon Prime Subscription</li>
+            </ul>
+            <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card recommended-card p-4 position-relative">
+            <h5 class="text-center"><mark>₹310+</mark></h5>
+            <p class="text-center">40GB Data | 30 Days Validity</p>
+            <ul>
+              <li>Unlimited Calls</li>
+              <li>100 SMS/Day</li>
+              <li>Free Hotstar Subscription</li>
+            </ul>
+            <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <hr class="border-white-50 my-4" />
+    <br />
+
+    <!-- Plans with Vertical Nav Tabs -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-3">
+          <div
+            class="nav flex-column nav-pills"
+            id="vertical-nav-bar"
+            role="tablist"
+          >
+            <button
+              class="nav-link active"
+              data-bs-toggle="pill"
+              data-bs-target="#popular"
+            >   Popular
+              
+            </button>
+            <button
+              class="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#validity"
+            >
+              Validity
+            </button>
+            <button
+              class="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#data"
+            >
+              Data
+            </button>
+            <button
+              class="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#unlimited"
+            >
+              Unlimited
+            </button>
+            <button
+              class="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#entertainment"
+            >
+              Entertainment
+            </button>
+            <button
+              class="nav-link"
+              data-bs-toggle="pill"
+              data-bs-target="#annual"
+            >
+              Annual
+            </button>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="tab-content">
+
+            <!-- Popular Plans -->
+            <div class="tab-pane fade show active" id="popular">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3 position-relative">
+                    <div class="badge position-absolute top-0 end-0 p-2">
+                      Hot Deal
+                    </div>
+                    <h5 class="text-left highlight-price">₹400</h5>
+                    <p>50GB Data | 30 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>100 SMS/Day</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3 position-relative">
+                    <div class="badge position-absolute top-0 end-0 p-2">
+                      Limited Offer
+                    </div>
+                    <h5 class="text-left highlight-price">₹500</h5>
+                    <p>Unlimited Data | 30 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>Unlimited SMS</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3 position-relative">
+                    <div class="badge position-absolute top-0 end-0 p-2">
+                      Best Value
+                    </div>
+                    <h5 class="text-left highlight-price">₹350</h5>
+                    <p>30GB Data | 30 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>50 SMS/Day</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3 position-relative">
+                    <div class="badge position-absolute top-0 end-0 p-2">
+                      Hot Deal
+                    </div>
+                    <h5 class="text-left highlight-price">₹600</h5>
+                    <p>80GB Data | 45 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>100 SMS/Day</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Validity Plans -->
+            <div class="tab-pane fade" id="validity">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3 position-relative">
+                    <div class="badge position-absolute top-0 end-0 p-2">
+                      Limited Offer
+                    </div>
+                    <h5 class="text-left highlight-price">₹300</h5>
+                    <p>10GB Data | 60 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>50 SMS/Day</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3 position-relative">
+                    <div class="badge position-absolute top-0 end-0 p-2">
+                      Best Value
+                    </div>
+                    <h5 class="text-left highlight-price">₹450</h5>
+                    <p>20GB Data | 90 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>100 SMS/Day</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3 position-relative">
+                    <div class="badge position-absolute top-0 end-0 p-2">
+                      Exclusive
+                    </div>
+                    <h5 class="text-left highlight-price">₹500</h5>
+                    <p>30GB Data | 120 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>Unlimited SMS</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3 position-relative">
+                    <div class="badge position-absolute top-0 end-0 p-2">
+                      Popular
+                    </div>
+                    <h5 class="text-left highlight-price">₹650</h5>
+                    <p>50GB Data | 180 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>100 SMS/Day</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Data Plans -->
+            <div class="tab-pane fade" id="data">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <h5 class="text-left highlight-price">₹200</h5>
+                    <p>5GB Data | 30 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>50 SMS/Day</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <h5 class="text-left highlight-price">₹350</h5>
+                    <p>15GB Data | 60 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>100 SMS/Day</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <h5 class="text-left highlight-price">₹600</h5>
+                    <p>30GB Data | 180 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>100 SMS/Day</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Unlimited Plans -->
+            <div class="tab-pane fade" id="unlimited">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <div class="badge position-absolute top-0 end-0 p-2">
+                      Best Value
+                    </div>
+                    <h5 class="text-left highlight-price">₹600</h5>
+                    <p>Unlimited Data | 90 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>Unlimited SMS</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <h5 class="text-left highlight-price">₹750</h5>
+                    <p>Unlimited Data | 180 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>Unlimited SMS</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <h5 class="text-left highlight-price">₹950</h5>
+                    <p>Unlimited Data | 240 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>Unlimited SMS</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Entertainment Plans -->
+            <div class="tab-pane fade" id="entertainment">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <h5 class="text-left highlight-price">₹450</h5>
+                    <p>30GB Data | 30 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>100 SMS/Day</li>
+                      <li>Free Hotstar Subscription</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <h5 class="text-left highlight-price">₹600</h5>
+                    <p>50GB Data | 30 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>100 SMS/Day</li>
+                      <li>Free Netflix Subscription</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Annual Plans -->
+            <div class="tab-pane fade" id="annual">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <h5 class="text-left highlight-price">₹1200</h5>
+                    <p>120GB Data | 365 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>Unlimited SMS</li>
+                    </ul>
+                    <button class="btn btn-primary w-100 custom-btn"onclick="window.location.href='Payment.html'">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane fade" id="annual">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card plan-card p-3">
+                    <h5 class="text-left highlight-price">₹1200</h5>
+                    <p>120GB Data | 365 Days Validity</p>
+                    <ul>
+                      <li>Unlimited Calls</li>
+                      <li>Unlimited SMS</li>
+                    </ul>
+                    <button class="btn btn-primary w-100">Buy Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .badge {
+        background-color: #FFB000; 
+        color: #fff;
+        font-size: 0.8rem;
+        padding: 5px;
+      }
+      .highlight-price {
+        color: #d93131; 
+        font-weight: bold;
+        font-size: 2rem; 
+        left: 10px;
+        top: 10px;
+      }
+      .plan-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    </style>
+    <hr class="border-white-50 my-4" />
+
+
+      <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mt-5">
+          <h5>About Mobi-Comm</h5>
+          <p><a href="Aboutuspage.html">About Us</a></p>
+          <p><a href="FAQsPage.html">FAQs</a></p>
+         
+          <p><a href="MyAccount.html">My Account</a></p>
+          <p><a href="https://commonsupportcentre.com/">Support</a></p>
+        </div>
+
+        <div class="col-md-4 mt-5" style="padding-left: 60px;">
+          <h5>Mobi-Comm</h5>
+          <p>Mobi-Comm is an advanced mobile communication and prepaid recharge system...</p>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/yourusername" target="_blank">
+              <i class="fab fa-instagram"></i>
+            </a>
+            
+            <a href="https://www.facebook.com/yourusername" target="_blank" >
+              <i class="fab fa-facebook"></i>
+            </a>
+            
+            <a href="https://www.twitter.com/yourusername" target="_blank" >
+              <i class="fab fa-twitter"></i>
+            </a>
+            
+            <a href="https://www.youtube.com/yourchannel" target="_blank">
+              <i class="fab fa-youtube"></i>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+
+        <div class="col-md-4 mt-5">
+          <h5>Plans Available</h5>
+          <p><a href="PlansPage2.html">Popular Plans</a></p>
+          <p><a href="PlansPage2.html">Unlimited Plans</a></p>
+          <p><a href="PlansPage2.html">Validity Plans</a></p>
+
+          <p><a href="PlansPage2.html">Data Plans</a></p>
+          <p><a href="PlansPage2.html">Entertainment Plans</a></p>
+          <p><a href="PlansPage2.html">Annual Plans</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+   
+ 
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

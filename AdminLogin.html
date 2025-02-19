@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    
+   
+    <style>
+        :root {
+            --primary: #004225;
+            --secondary: #FFB000;
+            --info: #F5F5DC;
+            --danger: #FFCF9D;
+        }
+
+    
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+
+        .login-box {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 700px;
+        }
+
+        .image-section {
+            width: 50%;
+            background: url('your-image.jpg') center/cover no-repeat;
+        }
+
+        .form-section {
+            width: 50%;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .form-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .btn-login {
+            background-color: var(--primary);
+            color: white;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary d-flex justify-content-center align-items-center" style="padding: 0px;">
+    <img src="Assets/Images/Screenshot_2025-02-15_151456-removebg-preview.png" width="300px" height="100px" alt="" style="max-height: 100px; padding: 0; margin: 0;">
+  </nav>
+  
+  <!-- container -->
+    <div class="login-container">
+        <div class="login-box">
+            <div class="image-section">
+                <img src="Assets/Images/picture2.jpg" alt="" height="500" width="350">
+            </div>
+            <div class="form-section">
+                <h2 class="display-6 text-secondary">Welcome</h2>
+                <p class="text-primary fw-bold">Please Enter your Details</p>
+                <form action="admin_dashboard.html" method="POST">
+                    <div class="mb-3">
+                        <p class="text-start fw-bold">Enter name:</p>
+                        <input type="text" class="form-control" placeholder="Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-start fw-bold">Enter Admin ID:</p>
+                        <input type="text" class="form-control" placeholder="ID" required>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-start fw-bold">Enter password:</p>
+                        <input type="password" class="form-control" placeholder="password" required>
+                    </div>
+                    
+                    <button type="button" class="btn btn-login" onclick="location.href='AdminDashboard.html';">LOG IN</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-primary text-white text-center p-2">Mobi-Comm &copy; 2025</footer>
+</body>
+</html>
