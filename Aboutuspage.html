@@ -5,275 +5,801 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Mobi-Comm</title>
   <link rel="stylesheet" href="css/main.min.css">
-
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
   
   <style>
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cabin', sans-serif;
+      font-size: 18px;
+      background-color: #ffffff;
+    }
 
-
+    /* Navbar Styles (Mobi-Comm Default) */
     .navbar {
-      background-color: #234331;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #157a6e;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
-    .navbar-brand, .nav-link, .navbar-text {
-      color: white !important;
+
+    .navbar-brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #f6af65;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      /* Removed glowing effect to prevent outline */
+      text-shadow: none; /* Reset any inherited glow */
+      animation: none; /* Remove animation to prevent glowing effect */
+      transition: transform 0.3s ease, color 0.3s ease;
     }
 
-    .dropdown-item{
-        color: black;
+    .navbar-brand:hover {
+      transform: scale(1.05);
+      color: #b5ffe1;
     }
-    .hero-section img { width: 40%; border-radius: 10px; }
-    .vision-images img, .mission-images img { border-radius: 15px; width: 100%; }
-    .vision-images .big { height: 250px; }
-    .vision-images .small { height: 120px; }
-    .mission-images .left img { height: 200px; }
-    .mission-images .right img { height: 250px; }
-  
-    .card {
-  border-radius: .7rem;
-}
 
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
 
-img {
-  transition: transform 0.3s ease-in-out;
-}
+    .nav-links a {
+      color: #f6af65;
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease;
+    }
 
-img:hover {
-  transform: scale(1.05);
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: #b5ffe1;
+      transition: width 0.3s ease;
+    }
 
-}
+    .nav-links a:hover::after {
+      width: 100%;
+    }
 
-.footer {
-      background-color: #234331;
-      color: white;
-      padding: 10px 0;
-      margin-top: 70px;
+    .nav-links a:hover {
+      color: #b5ffe1;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background: #f6af65;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #157a6e;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .profile-icon:hover {
+      transform: rotate(360deg);
+      background: #bc4749;
+    }
+
+    /* Shining Line Below Navbar */
+    .navbar::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, transparent, #134732, transparent);
+      animation: shine 3s infinite linear;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Banner (Adapted from Sample, Mobi-Comm Colors) */
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 400px;
+      width: 100%;
+      color: #ffffff;
+      background: linear-gradient(#157a6e, #f6af65);
+      padding: 20px;
+      overflow: hidden;
+      margin-top: 80px; /* Account for fixed navbar */
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .banner-content {
+      text-align: center;
+      animation: slideIn 1s ease-out;
+    }
+
+    .banner-content h1,
+    .banner-content p {
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .banner-content h1 {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .banner-content p {
+      opacity: 80%;
+      font-size: 18px;
+    }
+
+    .banner-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin: 40px auto 0 auto;
+      background: #ffffff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #157a6e;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .banner-btn:hover {
+      background: #b5ffe1;
+      color: #157a6e;
+      transform: translateY(-5%);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* General Section Styles (Updated with Mobi-Comm Colors) */
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    h1, h2 {
+      font-weight: 700;
+    }
+
+    h1.display-6 {
+      font-size: 36px;
+      color: #157a6e;
+      margin-bottom: 20px;
+      animation: slideInLeft 1s ease-out;
+    }
+
+    h1.display-6 b {
+      color: #f6af65;
+    }
+
+    p.text-primary.fs-3 {
+      font-size: 24px;
+      color: #157a6e;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    h2.text-secondary {
+      font-size: 32px;
+      color: #157a6e;
+      margin-bottom: 20px;
+      animation: slideInLeft 1s ease-out;
+    }
+
+    h2.text-secondary b {
+      color: #f6af65;
+    }
+
+    p.fs-5 {
+      font-size: 18px;
+      color: #000000;
+      line-height: 1.6;
+      animation: fadeIn 1s ease-in;
+    }
+
+    p.fw-bold.fs-4.text-primary {
+      font-size: 20px;
+      color: #157a6e;
+      font-weight: 700;
+      margin-top: 15px;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    /* Vision Section (Two Images in First Row, One in Second Row) */
+    .vision-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .vision-images .col-md-4 {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .vision-images .row-1 {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .vision-images .row-2 {
+      display: flex;
+      justify-content: center;
+    }
+
+    .vision-images img {
+      border-radius: 15px;
+      width: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .vision-images img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .vision-images .big { height: 230px; object-fit: cover; }
+    .vision-images .small { height: 230px; object-fit: cover; }
+
+    /* Mission Section (Reduced Width, Right Image/Text Lower) */
+    .mission-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .mission-images .col-md-6 {
+      flex: 0 0 calc(50% - 20px);
+      max-width: calc(50% - 20px);
+    }
+
+    .mission-images .left {
+      padding-right: 10px;
+    }
+
+    .mission-images .right {
+      padding-left: 10px;
+      margin-top: 50px; /* Lower the right image and text */
+    }
+
+    .mission-images img {
+      border-radius: 15px;
+      width: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .mission-images img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .mission-images .left img { height: 200px; object-fit: cover; }
+    .mission-images .right img { height: 250px; object-fit: cover; }
+
+    /* Company History & Milestones Section */
+    .history-section {
+      background-color: #B5FFE1; /* Adjusted to #B58888 as placeholder for #B588G (assuming typo) */
+      padding: 40px 0;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .history-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .history-card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: slideUp 1s ease-out;
+    }
+
+    .history-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .history-card i {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: #157a6e;
+    }
+
+    .history-card h5 {
+      font-size: 20px;
+      color: #157a6e;
+      font-weight: 700;
+      margin-bottom: 15px;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    .history-card p {
+      font-size: 16px;
+      color: #000000;
+      line-height: 1.6;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .history-card i.fa-chart-line { color: #f6af65; } /* Yellow for growth chart */
+    .history-card i.fa-expand-arrows-alt { color: #157a6e; } /* Green for expand */
+    .history-card i.fa-star { color: #bc4749; } /* Red for achievements */
+
+    /* New Features Section (With Glowing Lines and Animated Icons) */
+    .features-section {
+      padding: 40px 0;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .features-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .features-grid {
+      margin-top: 30px;
+    }
+
+    .feature-item {
+      margin-bottom: 40px;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: slideUp 1s ease-out;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-icon {
+      text-align: center;
+      margin-bottom: 15px;
+      animation: float 3s infinite ease-in-out, pulse 2s infinite ease-in-out;
+    }
+
+    .feature-icon i {
+      font-size: 40px;
+    }
+
+    .glowing-line {
+      height: 2px;
+      background: linear-gradient(to right, transparent, #f6af65, transparent);
+      box-shadow: 0 0 10px #f6af65, 0 0 20px #f6af65;
+      margin: 15px 0;
+      animation: glow 2s infinite alternate;
+    }
+
+    .feature-text {
       text-align: left;
     }
-    .footer a {
-      color: white;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
-    }
 
-    .footer .col-md-4:last-child {
-    padding-left: 240px; 
-    text-align: left;
-}
-    .social-icons i {
+    .feature-text h5 {
       font-size: 20px;
-      margin: 0 10px;
+      color: #157a6e;
+      font-weight: 700;
+      margin-bottom: 10px;
+      animation: slideDown 0.5s ease-out;
     }
 
-    .social-icons i:hover{
-      color: #FFB000; 
+    .feature-text p {
+      font-size: 17px;
+      color: #000000;
+      line-height: 1.6;
+      animation: fadeIn 1s ease-in;
     }
 
+    .feature-text p b {
+      color: #f6af65;
+    }
+
+    .feature-icon i.fa-bolt { color: #f6af65; } /* Yellow for lightning bolt */
+    .feature-icon i.fa-lock { color: #157a6e; } /* Green for lock */
+    .feature-icon i.fa-user-check { color: #bc4749; } /* Red for user check */
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px #f6af65, 0 0 10px #f6af65; }
+      100% { box-shadow: 0 0 10px #f6af65, 0 0 20px #f6af65; }
+    }
+
+    /* Footer (Mobi-Comm Default) */
+    footer {
+      background-color: #157a6e;
+      color: #ffffff;
+      padding: 30px 0;
+      margin-top: 50px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer-column {
+      flex: 1;
+      padding: 0 20px;
+    }
+
+    .footer-column h5 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #f6af65;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      font-size: 14px;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 10px;
+      line-height: 1.5;
+      transition: color 0.3s ease;
+    }
+
+    .footer-column a:hover {
+      color: #b5ffe1;
+    }
+
+    .social-icons {
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      color: #ffffff;
+      font-size: 20px;
+      margin-right: 15px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #f6af65;
+      transform: scale(1.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 10px 15px;
+      }
+      .nav-links {
+        gap: 20px;
+      }
+      .banner {
+        height: 300px;
+        margin-top: 60px;
+      }
+      .banner-content h1 {
+        font-size: 24px;
+      }
+      .banner-content p {
+        font-size: 16px;
+      }
+      .banner-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+      .container {
+        padding: 0 10px;
+      }
+      .vision-images .row-1, .vision-images .row-2 {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .vision-images .col-md-4 {
+        width: 100%;
+      }
+      .mission-images {
+        flex-direction: column;
+      }
+      .mission-images .col-md-6 {
+        width: 100%;
+        margin: 10px 0;
+      }
+      .mission-images .right {
+        margin-top: 20px;
+      }
+      .history-grid, .feature-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-column {
+        padding: 10px 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-      <a class="navbar-brand" href="Homepage.html">Mobi-Comm</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+  <!-- New Navbar (Mobi-Comm Default) -->
+  <nav class="navbar">
+    <div class="navbar-brand">Mobi-Comm</div>
+    <div class="nav-links">
+      <a href="Homepage.html">Home</a>
+      <a href="PlansPage2.html">Plans</a>
+      <a href="Aboutuspage.html">About Us</a>
+    </div>
+    <div class="nav-right">
+      <div class="profile-icon" title="User Profile">K</div>
+    </nav>
+
+  <!-- Banner (Mobi-Comm Styled) -->
+  <div class="banner">
+    <div class="banner-content">
+      <h1>Welcome to <b>Mobi-Comm</b></h1>
+      <p>Leading the way in seamless mobile communication solutions.</p>
+      <button class="banner-btn" onclick="window.location.href='Aboutuspage.html'">
+        Learn More</i>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item ms-4"><a class="nav-link" href="Homepage.html">Home</a></li>
-          <li class="nav-item ms-4"><a class="nav-link" href="PlansPage2.html">Plans</a></li>
-          <!-- <li class="nav-item ms-4"><a class="nav-link" href="Recharge.html">Plans</a></li> -->
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search">
-          <button class="btn btn-outline-light" type="submit">Search</button>
-        </form>
-        <div class="dropdown ms-3">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-            <i class="fas fa-user"></i>
-          </a>
-          <ul class="dropdown-menu aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="MyAccount.html">My Account</a></li>
-            <li><a class="dropdown-item" href="LoginUser.html">Sign Out</a></li>
-          </ul>
+    </div>
+  </div><br>
+
+  <section class="container my-4">
+    <h2 class="text-secondary">About <b>Mobi-Comm</b></h2>
+    <p class="fs-5">At Mobi-Comm, we strive to enhance connectivity through seamless and efficient communication solutions. Our commitment to quality, affordability, and innovation drives us to develop services that cater to diverse customer needs. </p>
+   
+    <p class="fs-5">Whether for individuals or businesses, we ensure uninterrupted communication with cutting-edge technology and a strong network infrastructure. With a focus on customer satisfaction, we continue to evolve, making global connections more accessible and convenient for everyone.</p>
+  </section><br>
+
+  <section class="container my-4">
+    <h2 class="text-secondary">Our <b>Vision</b></h2>
+    <div class="vision-images">
+      <div class="row-1">
+        <div class="col-md-4">
+          <img src="Assets/Images/Customercentric.webp" class="big" alt="Vision Image">
+          <p class="fw-bold fs-4 mt-4 text-primary">We prioritize our customers, ensuring seamless experiences with intuitive technology, responsive support, and a strong network.</p>
+        </div>
+        <div class="col-md-4 ms-5 mt-2">
+          <img src="Assets/Images/Community.jpg" class="small mb-2 ms-5" alt="Vision Image" height="600px">
+          <p class="fw-bold mt-1 fs-4 mt-2 ms-5 text-primary">We leverage technology and innovation to drive social prosperity, digital literacy, and inclusivity.</p>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="col-md-4">
+          <img src="Assets/Images/Digitalconnect.webp" class="small" alt="Vision Image">
+          <p class="fw-bold mt-2 fs-4 text-primary">We connect communities, making digital access seamless for all, regardless of location.</p>
         </div>
       </div>
     </div>
-  </nav>
-
-
-  <section class="container my-4 text-center">
-    <h1 class="display-6 text-secondary"><b>Mobi-Comm</b> Service Limited</h1>
-    <p class="text-primary fs-3">Leading the way in seamless mobile communication solutions.</p>
-    <div class="hero-section">
-      <img src="Assets/Images/Mobi-comm .jpg" height="400px" alt="Company Image">
-    </div>
-  </section>
-
-  <br>
-  <section class="container my-4">
-    <h2 class="text-secondary">About <b>Mobi-Comm</b></h2>
-    <p class="fs-5">At Mobi-Comm, we strive to enhance connectivity through seamless and efficient communication solutions. Our commitment to quality, affordability, and innovation drives us to develop services that cater to diverse customer needs. Whether for individuals or businesses, we ensure uninterrupted communication with cutting-edge technology and a strong network infrastructure. With a focus on customer satisfaction, we continue to evolve, making global connections more accessible and convenient for everyone.</p>
-  </section>
-<br>
-  <section class="container my-4">
-    <h2 class="text-secondary">Our <b>Vision</b></h2>
-    <br>
-    <div class="row vision-images">
-      <div class="col-md-4"><img src="Assets/Images/Customercentric.webp" class="big" alt="Vision Image">
-        
-      <p class="fw-bold mt-1 text-primary">We prioritize our customers, ensuring seamless experiences with intuitive technology, responsive support, and a strong network.
-      </p></div>
-      <div class="col-md-4 ms-5 mt-2">
-        <img src="Assets/Images/Community.jpg" class="small mb-2" alt="Vision Image " height="600px">
-        <p  class="fw-bold mt-1 text-primary">We leverage technology and innovation to drive social prosperity, digital literacy, and inclusivity.</p>
-        <br>
-        <img src="Assets/Images/Digitalconnect.webp" class="small" alt="Vision Image">
-        <p class="fw-bold mt-2 text-primary">We connect communities, making digital access seamless for all, regardless of location.</p>
-      </div>
-    </div>
-  </section>
-  <br>
+  </section><br>
 
   <section class="container my-4">
     <h2 class="text-secondary">Our <b>Mission</b></h2>
-    <div class="row mission-images">
+    <div class="mission-images">
       <div class="col-md-6 left mt-4">
         <img src="Assets/Images/ActFast.jpg" class="mb-2" alt="Mission Image">
-        <p class="fw-bold mt-1 text-primary" >We act fast, eliminating delays and inefficiencies to deliver the best solutions.</p>
+        <p class="fw-bold mt-1 fs-4 text-primary">We act fast, eliminating delays and inefficiencies to deliver the best solutions.</p>
         <img src="Assets/Images/Different features.jpg" alt="Mission Image">
-        <p class="fw-bold mt-1 text-primary">We operate with integrity, fostering a culture of openness and reliability.</p>
+        <p class="fw-bold mt-1 fs-4 text-primary">We operate with integrity, fostering a culture of openness and reliability.</p>
       </div>
       <div class="col-md-6 right mt-5">
         <img src="Assets/Images/Digitalfirst.jpg" alt="Mission Image">
-        <p class="fw-bold mt-1 text-primary">We embrace digital innovation to simplify processes for customers and ourselves.
-        </p>
+        <p class="fw-bold mt-1 fs-4 text-primary">We embrace digital innovation to simplify processes for customers and ourselves.</p>
+      </div>
+    </div>
+  </section><br>
+
+  <!-- Company History & Milestones Section -->
+  <section class="history-section">
+    <div class="history-container">
+      <h2 class="text-secondary">Company History & Milestones</h2>
+      <div class="history-grid">
+        <div class="history-card">
+          <i class="fas fa-star"></i>
+          <h5>Founding Story</h5>
+          <p>Mobi-Comm was founded in 2020 by a team of telecom enthusiasts aiming to revolutionize mobile connectivity in India. Driven by the vision of affordable, reliable communication, we started with a small office in Tech City, focusing on prepaid recharge solutions for rural and urban customers alike.</p>
+        </div>
+        <div class="history-card">
+          <i class="fas fa-chart-line"></i>
+          <h5>Key Achievements and Milestones</h5>
+          <p>Launched India’s first AI-powered mobile recharge system in 2025, expanded to over 10 million users, and introduced 5G services in key cities, earning the “Innovative Telecom Provider of the Year” award in 2024.</p>
+        </div>
+        <div class="history-card">
+          <i class="fas fa-expand-arrows-alt"></i>
+          <h5>Growth Journey</h5>
+          <p>From a startup with 100 customers, we’ve grown to serve millions across India, adding new services like international roaming, family plans, and entertainment packages, while expanding our network to remote areas.</p>
+        </div>
+      </div>
+    </div>
+  </section><br>
+
+  <!-- New Features Section (With Glowing Lines and Animated Icons) -->
+  <section class="features-section">
+    <div class="features-container">
+      <h2 class="text-secondary">What We Offer</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div class="glowing-line"></div>
+          <div class="feature-text">
+            <h5>Lightning-Fast Transactions</h5>
+            <p>Experience real-time recharges with <b>zero delays</b>. Our advanced processing ensures instant payments every time, powered by state-of-the-art cloud technology and optimized algorithms. Whether you’re recharging on the go via our mobile app or website, our ultra-fast system handles millions of transactions seamlessly, minimizing wait times and maximizing convenience. With robust infrastructure and real-time validation, we guarantee swift, reliable service that keeps you connected without interruption, 24/7.</p>
+          </div>
+          <div class="glowing-line"></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="glowing-line"></div>
+          <div class="feature-text">
+            <h5>Uncompromised Security</h5>
+            <p><b>Your data and transactions are encrypted</b> with cutting-edge security protocols, ensuring complete privacy and protection. We use end-to-end encryption, multi-factor authentication, and regular security audits to safeguard your information, giving you peace of mind with every recharge. Our commitment to data security meets the highest industry standards, including compliance with GDPR and ISO 27001, making Mobi-Comm a trusted choice for millions of users worldwide. Advanced threat detection systems proactively monitor for potential breaches, ensuring your personal and financial data remains secure at all times.</p>
+          </div>
+          <div class="glowing-line"></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <div class="glowing-line"></div>
+          <div class="feature-text">
+            <h5>Customer-First Innovation</h5>
+            <p>From AI-powered reminders to <b>24/7 live support</b>, we design solutions that prioritize your convenience and satisfaction. Our intuitive mobile app offers personalized plan recommendations, real-time notifications, and seamless account management, while our dedicated support team is always ready to assist via chat, phone, or email. We continuously innovate to enhance your experience, integrating machine learning for predictive analytics, offering customizable recharge options, and introducing voice-activated features, ensuring Mobi-Comm remains your trusted partner in connectivity and customer care.</p>
+          </div>
+          <div class="glowing-line"></div>
+        </div>
       </div>
     </div>
   </section>
 
-  
-
-
-  <section style="color: #000; background-color: #f3f2f2;">
-    <div class="container py-4">
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-10 col-xl-8 text-center">
-          <h3 class=" mb-4 text-secondary">Why Choose <b>Mobi-Comm?</b></h3>
-          <p class="mb-4 pb-2 mb-md-5 pb-md-0">
-            Mobi-Comm isn't just another recharge platform. We redefine digital transactions with speed, security, and seamless connectivity. 
-            Whether you're recharging on the go or managing multiple accounts, our platform ensures efficiency and reliability at every step.
-          </p>
-        </div>
-      </div>
-  
-      <div class="row text-center">
-        <!-- Feature 1 -->
-        <div class="col-md-4 mb-4 mb-md-0">
-          <div class="card">
-            <div class="card-body py-4 mt-2">
-              <div class="d-flex justify-content-center mb-4">
-                <i class="fas fa-bolt fa-3x text-primary"></i>
-              </div>
-              <h5 class="font-weight-bold">Lightning-Fast Transactions</h5>
-              <p class="mb-2 text-primary">
-                Experience real-time recharges with <b>zero delays</b>. Our advanced processing ensures instant payments every time.
-              </p>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Feature 2 -->
-        <div class="col-md-4 mb-4 mb-md-0">
-          <div class="card">
-            <div class="card-body py-4 mt-2">
-              <div class="d-flex justify-content-center mb-4">
-                <i class="fas fa-lock fa-3x text-success"></i>
-              </div>
-              <h5 class="font-weight-bold">Uncompromised Security</h5>
-              <p class="mb-2 text-primary">
-                <b>Your data and transactions are encrypted</b> with cutting-edge security protocols, ensuring complete privacy and protection.
-              </p>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Feature 3 -->
-        <div class="col-md-4 mb-0">
-          <div class="card">
-            <div class="card-body py-4 mt-2">
-              <div class="d-flex justify-content-center mb-4">
-                <i class="fas fa-user-check fa-3x text-warning"></i>
-              </div>
-              <h5 class="font-weight-bold">Customer-First Innovation</h5>
-              <p class="mb-2 text-primary">
-                From AI-powered reminders to <b>24/7 live support</b>, we design solutions that prioritize your convenience and satisfaction.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-<!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 mt-5">
-        <h5>About Mobi-Comm</h5>
+  <!-- Footer (Mobi-Comm Default) -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h5>Quick Links</h5>  
         <p><a href="Aboutuspage.html">About Us</a></p>
         <p><a href="FAQsPage.html">FAQs</a></p>
-       
         <p><a href="MyAccount.html">My Account</a></p>
         <p><a href="https://commonsupportcentre.com/">Support</a></p>
       </div>
-
-      <div class="col-md-4 mt-5" style="padding-left: 60px;">
+      <div class="footer-column">
         <h5>Mobi-Comm</h5>
-        <p>Mobi-Comm is an advanced mobile communication and prepaid recharge system...</p>
+        <p>Empowering connections with fast recharges and reliable service.</p>
         <div class="social-icons">
-          <a href="https://www.instagram.com/yourusername" target="_blank">
-            <i class="fab fa-instagram"></i>
-          </a>
-          
-          <a href="https://www.facebook.com/yourusername" target="_blank" >
-            <i class="fab fa-facebook"></i>
-          </a>
-          
-          <a href="https://www.twitter.com/yourusername" target="_blank" >
-            <i class="fab fa-twitter"></i>
-          </a>
-          
-          <a href="https://www.youtube.com/yourchannel" target="_blank">
-            <i class="fab fa-youtube"></i>
-          </a>
-          
-          <a href="https://www.linkedin.com/in/yourprofile" target="_blank">
-            <i class="fab fa-linkedin"></i>
-          </a>
+          <a href="https://www.instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/yourusername" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.youtube.com/yourchannel" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
-
-
-      <div class="col-md-4 mt-5">
-        <h5>Plans Available</h5>
-        <p><a href="PlansPage2.html">Popular Plans</a></p>
-        <p><a href="PlansPage2.html">Unlimited Plans</a></p>
-        <p><a href="PlansPage2.html">Validity Plans</a></p>
-
-        <p><a href="PlansPage2.html">Data Plans</a></p>
-        <p><a href="PlansPage2.html">Entertainment Plans</a></p>
-        <p><a href="PlansPage2.html">Annual Plans</a></p>
+      <div class="footer-column">
+        <h5>Contact Us</h5>
+        <p>Mobi-Comm Headquarters</p>
+        <p>123 Telecom Street, Tech City, India - 560001</p>
+        <p>Phone: +91 9876543210</p>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

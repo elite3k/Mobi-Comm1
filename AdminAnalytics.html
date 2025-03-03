@@ -12,7 +12,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
   <style>
-   
     body {
       display: flex;
       background-color: #f8f9fa;
@@ -57,7 +56,7 @@
   
     .navbar {
       background-color: #ffffff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 5px rgba(243, 15, 15, 0.1);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -70,7 +69,7 @@
     .navbar-brand {
       font-family: 'Cabin', sans-serif;
       font-size: 1.75rem;
-      color: #5C8374;
+      color: black;
       font-weight: 700;
     }
     .navbar .search-input {
@@ -92,6 +91,7 @@
     .dropdown-menu {
       min-width: 150px;
     }
+
     /* Dashboard Cards */
     .dashboard-cards {
       display: flex;
@@ -100,13 +100,13 @@
       flex-wrap: wrap;
     }
     .card {
-      padding: 20px;
+      padding: 30px;
       background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
-      border-radius: 8px;
+      border-radius: 9px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       text-align: center;
-      width: 30%;
+      width: 25%;
       margin-bottom: 20px;
     }
   
@@ -114,8 +114,34 @@
       width: 80%;
       margin-top: 30px;
     }
+
     .progress-container {
       margin-top: 20px;
+    }
+    
+    /* New CSS for chart alignment */
+    .chart-container canvas {
+      display: block;
+      margin: 0 auto;
+    }
+    .chart-container {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .card {
+      box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+    }
+
+    .width-90 {
+      width: 90px!important;
+    }
+    .rounded-3 {
+      border-radius: 0.5rem !important;
+    }
+
+    a {
+      text-decoration: none;    
     }
   </style>
 </head>
@@ -148,42 +174,186 @@
       <div class="dashboard-cards">
         <div class="card">
           <h4>Total Customers</h4>
-          <p>500</p>
+          <p class="bg-dark rounded-4">500</p>
         </div>
         <div class="card">
           <h4>Plans Available</h4>
-          <p>20</p>
+          <p class="bg-dark rounded-4">20</p>
         </div>
         <div class="card">
           <h4>Transaction Reports</h4>
-          <p>15,000 Transactions</p>
+          <p class="bg-dark rounded-4">15,000 Transactions</p>
         </div>
       </div>
       <br>
 
-      <h4>Monthly Growth</h4>
-      <div class="chart-container">
-        <canvas id="rechargeChart"></canvas>
-      </div>
-      <div class="progress-container">
-       
-        <div class="progress">
-          <div class="progress-bar bg-secondary" style="width: 75%">75%</div>
+      <br>
+      <!-- Combined Monthly Growth and Transaction Charts -->
+      <div class="row">
+        <div class="col-md-6">
+          <h4 class="text-center text-decoration-underline">Monthly Growth</h4>
+          <div class="chart-container">
+            <canvas id="rechargeChart" height="300" width="500"></canvas>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4 class="text-center text-decoration-underline">Transaction</h4>
+          <div class="chart-container" style="width:600px; margin:auto;">
+            <canvas id="paymentMethodChart" width="400px" ></canvas>
+          </div>
         </div>
       </div>
-      <br><br>
-      <!-- Modified Pie Chart Container with Title and Reduced Size -->
-      <div class="chart-container" style="max-width:400px; margin:auto;">
-        <h4 style="text-align:center; color:#1f4436;">Payment Methods</h4>
-        <canvas id="paymentMethodChart" style="max-height:400px;"></canvas>
-      </div>
+
+     
       <!-- Modified Flot Chart Container with Title and Reduced Size -->
       <div class="chart-container" id="flotChart" style="max-width:400px; margin:auto; height:300px;">
-      
+      </div>
+
+      <!-- Recharge Plan Trends Chart -->
+      <div class="container w-75 ">
+        <h3 class="text-center">Recharge Plan Trends</h3>
+        <canvas id="planTrendsChart"></canvas>
+      </div>
+
+      <br><br>
+      <!-- Overall Transactions -->
+      <h4 class="text-center text-decoration-underline">Overall Transaction</h4>
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-lg-6 d-flex">
+            <div class="card mb-3 card-body">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <a href="#!.html">
+                    <img src="https://www.bootdey.com/image/280x280/FF00FF/000000" class="width-90 rounded-3" alt="">
+                  </a>
+                </div>
+                <div class="col">
+                  <div class="overflow-hidden flex-nowrap">
+                    <h6 class="mb-1">
+                      <a href="#!" class="text-reset">Total Recharges Processed</a>
+                    </h6>
+                    <span class="text-muted d-block mb-2 small">
+                      Updated 1 Hour Ago
+                    </span>
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <small class="me-2">85%</small>
+                      </div>
+                      <div class="col">
+                        <div class="progress bg-tint-success" style="height: 4px;">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-6 d-flex">
+            <div class="card mb-3 card-body">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <a href="#!.html">
+                    <img src="https://www.bootdey.com/image/280x280/6495ED/000000" class="width-90 rounded-3" alt="">
+                  </a>
+                </div>
+                <div class="col">
+                  <div class="overflow-hidden flex-nowrap">
+                    <h6 class="mb-1">
+                      <a href="#!" class="text-reset">Success Rate of Transactions</a>
+                    </h6>
+                    <span class="text-muted d-block mb-2 small">
+                      Updated 3 Hours Ago
+                    </span>
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <small class="me-2">92%</small>
+                      </div>
+                      <div class="col">
+                        <div class="progress bg-tint-success" style="height: 4px;">
+                          <div class="progress-bar bg-success" role="progressbar" style="width: 92%;" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-6 d-flex">
+            <div class="card mb-3 card-body">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <a href="#!.html">
+                    <img src="https://www.bootdey.com/image/280x280/00FFFF/000000" class="width-90 rounded-3" alt="">
+                  </a>
+                </div>
+                <div class="col">
+                  <div class="overflow-hidden flex-nowrap">
+                    <h6 class="mb-1">
+                      <a href="#!" class="text-reset">Pending Transactions</a>
+                    </h6>
+                    <span class="text-muted d-block mb-2 small">
+                      Updated 30 Minutes Ago
+                    </span>
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <small class="me-2">18%</small>
+                      </div>
+                      <div class="col">
+                        <div class="progress bg-tint-warning" style="height: 4px;">
+                          <div class="progress-bar bg-warning" role="progressbar" style="width: 18%;" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-6 d-flex">
+            <div class="card mb-3 card-body">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <a href="#!.html">
+                    <img src="https://www.bootdey.com/image/280x280/FFB6C1/000000" class="width-90 rounded-3" alt="">
+                  </a>
+                </div>
+                <div class="col">
+                  <div class="overflow-hidden flex-nowrap">
+                    <h6 class="mb-1">
+                      <a href="#!" class="text-reset">Failed Transactions</a>
+                    </h6>
+                    <span class="text-muted d-block mb-2 small">
+                      Updated 4 Hours Ago
+                    </span>
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <small class="me-2">8%</small>
+                      </div>
+                      <div class="col">
+                        <div class="progress bg-tint-danger" style="height: 4px;">
+                          <div class="progress-bar bg-danger" role="progressbar" style="width: 8%;" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    <br>
+
   <script>
+    // Monthly Growth Bar Chart
     var ctx = document.getElementById('rechargeChart').getContext('2d');
     var rechargeChart = new Chart(ctx, {
       type: 'bar',
@@ -192,7 +362,7 @@
         datasets: [{
           label: 'Total Recharges',
           data: [500, 700, 900, 1200, 1400, 1600],
-          backgroundColor: 'rgba(54, 162, 235, 0.5)'
+          backgroundColor: 'rgba(54, 62, 235, 0.5)'
         }]
       },
       options: {
@@ -205,6 +375,7 @@
       }
     });
     
+    // Payment Method Pie Chart
     var paymentCtx = document.getElementById('paymentMethodChart').getContext('2d');
     var paymentMethodChart = new Chart(paymentCtx, {
       type: 'pie',
@@ -217,6 +388,7 @@
       }
     });
     
+    // Flot Pie Chart
     $(function() {
       var data = [
         { label: "Plan A", data: 40 },
@@ -229,6 +401,73 @@
         legend: { show: false }
       });
     });
+  </script>
+  <script>
+    // Recharge Plan Trends Line Chart
+    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: "Validity Plan",
+          data: [30, 40, 50, 60, 55, 70, 80, 85, 90, 95, 100, 110],
+          borderColor: "blue",
+          backgroundColor: "rgba(0, 0, 255, 0.2)",
+          tension: 0.3
+        },
+        {
+          label: "Popular Plan",
+          data: [50, 60, 70, 80, 75, 85, 90, 95, 105, 110, 120, 130],
+          borderColor: "green",
+          backgroundColor: "rgba(0, 255, 0, 0.2)",
+          tension: 0.3
+        },
+        {
+          label: "Unlimited Plan",
+          data: [20, 30, 40, 45, 50, 55, 60, 65, 70, 75, 80, 90],
+          borderColor: "red",
+          backgroundColor: "rgba(255, 0, 0, 0.2)",
+          tension: 0.3
+        },
+        {
+          label: "Data Plan",
+          data: [10, 20, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
+          borderColor: "orange",
+          backgroundColor: "rgba(255, 165, 0, 0.2)",
+          tension: 0.3
+        },
+        {
+          label: "Entertainment Plan",
+          data: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60],
+          borderColor: "purple",
+          backgroundColor: "rgba(128, 0, 128, 0.2)",
+          tension: 0.3
+        },
+        {
+          label: "Annual Plan",
+          data: [15, 25, 35, 45, 50, 60, 70, 80, 90, 100, 110, 120],
+          borderColor: "brown",
+          backgroundColor: "rgba(165, 42, 42, 0.2)",
+          tension: 0.3
+        }
+      ]
+    };
+    
+    const config = {
+      type: "line",
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "top"
+          }
+        }
+      }
+    };
+    
+    const myChart = new Chart(document.getElementById("planTrendsChart"), config);
   </script>
 </body>
 </html>

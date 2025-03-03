@@ -1,269 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="css/main.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-    #rechargeModal .modal-content {
-  background-color: #f0f0f0; 
-}
-#rechargeModal .modal-body table.table-striped {
-  background-color: #f0f0f0; 
-}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      #rechargeModal .modal-content {
+        background-color: #f0f0f0;
+      }
+      #rechargeModal .modal-body table.table-striped {
+        background-color: #f0f0f0;
+      }
 
+      body {
+        display: flex;
+        background-color: #f8f9fa;
+        margin: 0;
+        font-family: "Cabin", sans-serif;
+      }
 
-    body {
-      display: flex;
-      background-color: #f8f9fa;
-      margin: 0;
-      font-family: 'Cabin', sans-serif;
-    }
-    
-   
-    .sidebar {
-      width: 250px;
-      background: linear-gradient(135deg, #5C8374, #8AA7A2);
-      color: #fff;
-      height: 100vh;
-      padding-top: 20px;
-      position: fixed;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-      transition: background 0.3s ease;
-    }
-    .sidebar h4 {
-      color: #fff;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .sidebar a {
-      padding: 15px 20px;
-      text-decoration: none;
-      display: block;
-      color: #fff;
-      font-size: 1rem;
-      transition: background 0.3s ease, padding-left 0.3s ease;
-    }
-    .sidebar a:hover {
-      background: rgba(255, 255, 255, 0.2);
-      padding-left: 25px;
-    }
-    
-   
-    .content { 
-      margin-left: 250px; 
-      padding: 20px; 
-      width: 100%;
-    }
-    
+      .sidebar {
+        width: 250px;
+        background: linear-gradient(135deg, #5c8374, #8aa7a2);
+        color: #fff;
+        height: 100vh;
+        padding-top: 20px;
+        position: fixed;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s ease;
+      }
+      .sidebar h4 {
+        color: #fff;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .sidebar a {
+        padding: 15px 20px;
+        text-decoration: none;
+        display: block;
+        color: #fff;
+        font-size: 1rem;
+        transition: background 0.3s ease, padding-left 0.3s ease;
+      }
+      .sidebar a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        padding-left: 25px;
+      }
 
-    .navbar {
-      background-color: #ffffff;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      border-bottom: 2px solid #5C8374;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .navbar-brand {
-      font-family: 'Cabin', sans-serif;
-      font-size: 1.75rem;
-      color: #5C8374;
-      font-weight: 700;
-    }
-    .dropdown .btn {
-      border: none;
-      font-size: 1rem;
-      background-color: #5C8374;
-      color: #fff;
-      border-radius: 30px;
-      padding: 8px 15px;
-      transition: background-color 0.3s ease;
-    }
-    .dropdown .btn:hover {
-      background-color: #49736a;
-    }
-    .dropdown-menu {
-      min-width: 150px;
-    }
-    
-   
-    @media (max-width: 768px) {
+      .content {
+        margin-left: 250px;
+        padding: 20px;
+        width: 100%;
+      }
+
       .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 5px rgba(243, 15, 15, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        border-bottom: 2px solid #5c8374;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
       }
       .navbar-brand {
-        margin-bottom: 10px;
+        font-family: "Cabin", sans-serif;
+        font-size: 1.75rem;
+        color: black;
+        font-weight: 700;
       }
-      .dropdown {
-        width: 100%;
-        text-align: right;
+      .dropdown .btn {
+        border: none;
+        font-size: 1rem;
+        background-color: #5c8374;
+        color: #fff;
+        border-radius: 30px;
+        padding: 8px 15px;
+        transition: background-color 0.3s ease;
       }
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        box-shadow: none;
+      .dropdown .btn:hover {
+        background-color: #49736a;
       }
-      .content {
-        margin-left: 0;
+      .dropdown-menu {
+        min-width: 150px;
       }
-    }
-    
-   
-    .days-remaining { color: red !important; font-weight: bold; }
-    .table-hover tbody tr:hover { background-color: #f1f1f1; cursor: pointer;}
-    .table-bordered { border: 1px solid #dee2e6;  }
-    .custom-table { width: 75%; margin: 0 auto; }
-    .subscribed-members-table { width: 100%; margin-top: 20px; }
-    .subscribed-members-table th, .subscribed-members-table td { text-align: center; }
-    .subscribed-members-table .btn-primary { background-color: red; border: none !important; }
-    .subscribed-members-table .btn-primary:hover { background-color: white; color: black; }
-    
-  </style>
-</head>
-<body>
-  <div class="sidebar">
-    <h4 class="text-center mt-5"><u>Power Panel</u></h4>
-    <a href="AdminDashboard.html" onclick="showPage('subscribers')"><i class="fas fa-users"></i> Subscribers List</a>
-    <a href="Adminplan.html" onclick="showPage('planManagement')"><i class="fas fa-tasks"></i> Plan Management</a>
-    <a href="AdminAnalytics.html" onclick="showPage('rechargeAnalytics')"><i class="fas fa-chart-bar"></i> Recharge Analytics</a>
-  </div>
-  <div class="content">
-    <nav class="navbar navbar-light">
-      <span class="navbar-brand mb-0 h1">Mobi-Comm</span>
-      <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fas fa-user-circle"></i> Admin
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="AdminAccount.html">My Account</a></li>
-          <li><a class="dropdown-item" href="AdminLogin.html">Log Out</a></li>
-        </ul>
-      </div>
-    </nav>
 
-    <div id="subscribers" class="page">
-      <h2><i class="fas fa-users mt-4 mb-4 text-primary"></i> <span class="text-primary"> Subscribers List</span></h2>
-      <p class="text-center fs-4 text-decoration-underline days-remaining">3 Days Until Plan Expiry !</p>
-      <table class="table table-light table-hover table-bordered custom-table">
-        <thead class="table-primary table-rounded-3">
-          <tr>
-            <th>Name</th>
-            <th>Mobile Number</th>
-            <th>Current Plan</th>
-            <th>Expiry Date</th>
-            <th>Days Remaining</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>John Doe</td>
-            <td>9876543210</td>
-            <td>₹299 / Popular</td>
-            <td>2025-02-21</td>
-            <td class="days-remaining">3</td>
-          </tr>
-          <tr>
-            <td>Jane Smith</td>
-            <td>9123456789</td>
-            <td>₹499 / Validity</td>
-            <td>2025-02-22</td>
-            <td class="days-remaining">0</td>
-          </tr>
-          <tr>
-            <td>Kate</td>
-            <td>8876512340</td>
-            <td>₹799 / Unlimited</td>
-            <td>2025-02-21</td>
-            <td class="days-remaining">1</td>
-          </tr>
-        </tbody>
-      </table>
+      @media (max-width: 768px) {
+        .navbar {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 10px 20px;
+        }
+        .navbar-brand {
+          margin-bottom: 10px;
+        }
+        .dropdown {
+          width: 100%;
+          text-align: right;
+        }
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+          box-shadow: none;
+        }
+        .content {
+          margin-left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <h4 class="text-center mt-5"><u>Power Panel</u></h4>
+      <a href="AdminDashboard.html" onclick="showPage('subscribers')"
+        ><i class="fas fa-users"></i> Subscribers List</a
+      >
+      <a href="Adminplan.html" onclick="showPage('planManagement')"
+        ><i class="fas fa-tasks"></i> Plan Management</a
+      >
+      <a href="AdminAnalytics.html" onclick="showPage('rechargeAnalytics')"
+        ><i class="fas fa-chart-bar"></i> Recharge Analytics</a
+      >
     </div>
-    <br><hr>
-    <div class="container mt-5">
-      <h3 class="text-primary">Subscribed Members</h3>
-      <br>
-      <table class="table table-bordered table-hover subscribed-members-table">
-        <thead class="table-primary">
-          <tr>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>Current Plan</th>
-            <th>Validity</th>
-            <th>View Details</th>
-          </tr>
-        </thead>
-        <tbody id="subscribedMembers"></tbody>
-      </table>
-    </div>
-  </div>
-  <div class="modal fade" id="rechargeModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="subscriberName"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="content">
+      <nav class="navbar navbar-light">
+        <span class="navbar-brand mb-0 h1">Mobi-Comm</span>
+        <div class="dropdown">
+          <button
+            class="btn btn-light dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fas fa-user-circle"></i> Admin
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item" href="AdminAccount.html">My Account</a>
+            </li>
+            <li><a class="dropdown-item" href="AdminLogin.html">Log Out</a></li>
+          </ul>
         </div>
-        <div class="modal-body">
-          <table class="table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>Phone Number</th>
-                <th>Plan Name</th>
-                <th>Date</th>
-                <th>Mode of Payment</th>
-              </tr>
-            </thead>
-            <tbody id="rechargeDetails"></tbody>
-          </table>
-        </div>
-      </div>
+      </nav>
     </div>
-  </div>
-  <script>
-    let members = Array.from({ length: 20 }, (_, i) => ({
-      name: `User ${i + 1}`,
-      phone: `93611155${String(i).padStart(2, '0')}`,
-      plan: `₹399 / Any Plan`,
-      validity: `18.02.25 - 08.03.25`
-    }));
 
-    let membersTable = document.getElementById("subscribedMembers");
-    members.forEach(member => {
-      membersTable.innerHTML += `<tr>
-          <td>${member.name}</td>
-          <td>${member.phone}</td>
-          <td>${member.plan}</td>
-          <td>${member.validity}</td>
-          <td><button class="btn btn-primary" onclick="showRechargeHistory('${member.name}', '${member.phone}', ${members.indexOf(member)})">Recharge Log</button></td>
-      </tr>`;
-    });
-
-    function showRechargeHistory(name, phone, userIndex) {
-      document.getElementById('subscriberName').textContent = `Subscriber: ${name}`;
-      let history = `<tr><td>${phone}</td><td>₹399 Plan</td><td>15.02.25</td><td>UPI</td></tr>`;
-      if (userIndex % 2 === 0) {
-        history += `<tr><td>${phone}</td><td>₹299 Plan</td><td>10.01.25</td><td>Credit Card</td></tr>`;
-      }
-      document.getElementById('rechargeDetails').innerHTML = history;
-      new bootstrap.Modal(document.getElementById('rechargeModal')).show();
-    }
-  </script>
-</body>
+    <script>
+      
+    </script>
+  </body>
 </html>

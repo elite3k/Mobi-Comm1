@@ -1,0 +1,199 @@
+{
+  "Users:[
+ 
+  {
+    "username": "Jack Nelson",
+    "mobileNumber": "987651049",
+    "email": "user49@example.com",
+    "currentPlan": "Hot Deal",
+    "active": true,
+    "numberOfTransactions": 48,
+    "customerType": "New",
+    "rechargeHistory": [
+      {
+        "date": "2025-02-28",
+        "amount": 400,
+        "paymentMode": "Credit Card",
+        "transactionId": "TXN149",
+        "expiryDate": "2025-03-30"
+      },
+      {
+        "date": "2025-01-15",
+        "amount": 400,
+        "paymentMode": "UPI",
+        "transactionId": "TXN102",
+        "expiryDate": "2025-02-15"
+      }
+    ]
+  },
+  {
+    "username": "Alice Smith",
+    "mobileNumber": "9876543210",
+    "email": "alice.smith@example.com",
+    "currentPlan": "Ultra Max",
+    "active": false,
+    "numberOfTransactions": 35,
+    "customerType": "Old",
+    "rechargeHistory": [
+      {
+        "date": "2025-02-10",
+        "amount": 999,
+        "paymentMode": "Debit Card",
+        "transactionId": "TXN201",
+        "expiryDate": "2025-05-10"
+      }
+    ]
+  },
+  {
+    "username": "Michael Brown",
+    "mobileNumber": "9856743201",
+    "email": "michael.b@example.com",
+    "currentPlan": "Annual Saver",
+    "active": true,
+    "numberOfTransactions": 20,
+    "customerType": "New",
+    "rechargeHistory": [
+      {
+        "date": "2025-01-30",
+        "amount": 1000,
+        "paymentMode": "Net Banking",
+        "transactionId": "TXN305",
+        "expiryDate": "2026-01-30"
+      },
+      {
+        "date": "2024-12-25",
+        "amount": 800,
+        "paymentMode": "UPI",
+        "transactionId": "TXN275",
+        "expiryDate": "2025-12-25"
+      }
+    ]
+  },
+  {
+    "username": "Sarah Johnson",
+    "mobileNumber": "9123456789",
+    "email": "sarah.johnson@example.com",
+    "currentPlan": "Premium Unlimited",
+    "active": true,
+    "numberOfTransactions": 55,
+    "customerType": "Old",
+    "rechargeHistory": [
+      {
+        "date": "2025-02-20",
+        "amount": 1100,
+        "paymentMode": "Credit Card",
+        "transactionId": "TXN450",
+        "expiryDate": "2025-05-20"
+      }
+    ]
+  },
+  {
+    "username": "David White",
+    "mobileNumber": "9234567890",
+    "email": "david.white@example.com",
+    "currentPlan": "Limited Offer",
+    "active": false,
+    "numberOfTransactions": 40,
+    "customerType": "Old",
+    "rechargeHistory": [
+      {
+        "date": "2025-02-05",
+        "amount": 500,
+        "paymentMode": "Debit Card",
+        "transactionId": "TXN523",
+        "expiryDate": "2025-03-07"
+      }
+    ]
+  },
+  {
+    "username": "Emma Wilson",
+    "mobileNumber": "9345678901",
+    "email": "emma.wilson@example.com",
+    "currentPlan": "Annual Premium",
+    "active": true,
+    "numberOfTransactions": 30,
+    "customerType": "New",
+    "rechargeHistory": [
+      {
+        "date": "2025-02-01",
+        "amount": 2000,
+        "paymentMode": "UPI",
+        "transactionId": "TXN621",
+        "expiryDate": "2026-02-01"
+      }
+    ]
+  },
+  {
+    "username": "Daniel Carter",
+    "mobileNumber": "9456789012",
+    "email": "daniel.carter@example.com",
+    "currentPlan": "Super Saver",
+    "active": false,
+    "numberOfTransactions": 22,
+    "customerType": "New",
+    "rechargeHistory": [
+      {
+        "date": "2025-01-28",
+        "amount": 450,
+        "paymentMode": "Net Banking",
+        "transactionId": "TXN789",
+        "expiryDate": "2025-03-13"
+      }
+    ]
+  },
+  {
+    "username": "Sophia Miller",
+    "mobileNumber": "9567890123",
+    "email": "sophia.miller@example.com",
+    "currentPlan": "Mega Pack",
+    "active": true,
+    "numberOfTransactions": 38,
+    "customerType": "Old",
+    "rechargeHistory": [
+      {
+        "date": "2025-02-12",
+        "amount": 650,
+        "paymentMode": "Credit Card",
+        "transactionId": "TXN951",
+        "expiryDate": "2025-04-12"
+      }
+    ]
+  },
+  {
+    "username": "Oliver Martinez",
+    "mobileNumber": "9678901234",
+    "email": "oliver.martinez@example.com",
+    "currentPlan": "Best Value",
+    "active": false,
+    "numberOfTransactions": 25,
+    "customerType": "New",
+    "rechargeHistory": [
+      {
+        "date": "2025-01-10",
+        "amount": 450,
+        "paymentMode": "Debit Card",
+        "transactionId": "TXN1001",
+        "expiryDate": "2025-04-10"
+      }
+    ]
+  },
+  {
+    "username": "Isabella Scott",
+    "mobileNumber": "9789012345",
+    "email": "isabella.scott@example.com",
+    "currentPlan": "Ultimate Data",
+    "active": true,
+    "numberOfTransactions": 50,
+    "customerType": "Old",
+    "rechargeHistory": [
+      {
+        "date": "2025-02-15",
+        "amount": 1100,
+        "paymentMode": "UPI",
+        "transactionId": "TXN1103",
+        "expiryDate": "2026-02-15"
+      }
+    ]
+  }
+]
+}

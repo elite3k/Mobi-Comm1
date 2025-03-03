@@ -7,29 +7,91 @@
     <link rel="stylesheet" href="css/main.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    
-   
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #004225;
-            --secondary: #FFB000;
-            --info: #F5F5DC;
-            --danger: #FFCF9D;
+            --primary: #157a6e; /* Mobi-Comm primary color */
+            --secondary: #f6af65; /* Mobi-Comm secondary color */
+            --accent: #b5ffe1; /* Mobi-Comm accent color */
         }
 
-    
+        body {
+            background-color: #f5f6fa; /* Matches Mobi-Comm theme background */
+            font-family: 'Cabin', sans-serif;
+        }
 
+        /* Header Styles (from LoginUser.html, simplified) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--primary);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: center; /* Center the logo */
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
+            animation: glow 2s infinite alternate;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(246, 175, 101, 1), 0 0 30px rgba(181, 255, 225, 0.5);
+            }
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            color: var(--accent);
+        }
+
+        .navbar::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #134732, transparent);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Login Container */
         .login-container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 90vh;
+            margin-top: 70px; /* Offset for fixed navbar */
         }
 
         .login-box {
             display: flex;
-            background-color: white;
+            background-color: white; /* Updated to white for cleaner look */
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -38,7 +100,12 @@
 
         .image-section {
             width: 50%;
-            background: url('your-image.jpg') center/cover no-repeat;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .form-section {
@@ -52,21 +119,44 @@
             margin-bottom: 20px;
         }
 
+        .form-section p {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
         .btn-login {
             background-color: var(--primary);
             color: white;
+            width: 100%;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--accent);
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
             width: 100%;
         }
     </style>
 </head>
 <body>
+    <!-- Header (Mobi-Comm Logo Only) -->
+    <nav class="navbar">
+        <div class="navbar-brand">Mobi-Comm</div>
+    </nav>
 
-    <!-- Nav bar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-primary d-flex justify-content-center align-items-center" style="padding: 0px;">
-    <img src="Assets/Images/Screenshot_2025-02-15_151456-removebg-preview.png" width="300px" height="100px" alt="" style="max-height: 100px; padding: 0; margin: 0;">
-  </nav>
-  
-  <!-- container -->
+    <!-- Login Container -->
     <div class="login-container">
         <div class="login-box">
             <div class="image-section">
@@ -74,28 +164,23 @@
             </div>
             <div class="form-section">
                 <h2 class="display-6 text-secondary">Welcome</h2>
-                <p class="text-primary fw-bold">Please Enter your Details</p>
+                <p>Please Enter your Details</p>
                 <form action="admin_dashboard.html" method="POST">
                     <div class="mb-3">
-                        <p class="text-start fw-bold">Enter name:</p>
-                        <input type="text" class="form-control" placeholder="Name" required>
-                    </div>
-                    <div class="mb-3">
-                        <p class="text-start fw-bold">Enter Admin ID:</p>
+                        <p class="text-start">Enter Admin ID:</p>
                         <input type="text" class="form-control" placeholder="ID" required>
                     </div>
                     <div class="mb-3">
-                        <p class="text-start fw-bold">Enter password:</p>
+                        <p class="text-start">Enter password:</p>
                         <input type="password" class="form-control" placeholder="password" required>
                     </div>
-                    
                     <button type="button" class="btn btn-login" onclick="location.href='AdminDashboard.html';">LOG IN</button>
-
                 </form>
             </div>
         </div>
     </div>
 
-    <footer class="bg-primary text-white text-center p-2">Mobi-Comm &copy; 2025</footer>
+    <!-- Footer -->
+    <footer>Mobi-Comm © 2025</footer>
 </body>
 </html>

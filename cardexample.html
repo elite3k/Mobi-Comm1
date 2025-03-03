@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prepaid Plans - Mobi-Comm</title>
+  <link rel="stylesheet" href="css/main.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cabin', sans-serif;
+      font-size: 18px;
+      background-color: #f5f6fa;
+      margin: 20px;
+    }
+
+    /* Card Container */
+    .plan-card-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .plan-card {
+      display: flex;
+      background: #ffffff;
+      border-radius: 10px; /* Smaller radius */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Smaller shadow */
+      overflow: hidden;
+      width: 100%;
+      max-width: 600px; /* Reduced max-width for smaller size */
+      margin: 0 auto;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: slideUp 1s ease-out;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Left Section (Plan Name and Badge) */
+    .plan-left {
+      flex: 1;
+      padding: 12px; /* Reduced padding */
+      background: linear-gradient(135deg, #157a6e, #b5ffe1);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .plan-left h3 {
+      font-size: 18px; /* Reduced font size */
+      font-weight: 700;
+      color: #f6af65;
+      margin-bottom: 10px; /* Reduced margin */
+      animation: slideInLeft 1s ease-out;
+    }
+
+    .value-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #f6af65;
+      color: #157a6e;
+      padding: 6px 12px;
+      border-radius: 50%; /* Circular badge */
+      font-size: 12px; /* Reduced font size */
+      font-weight: 600;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Smaller shadow */
+      animation: bounceIn 1s ease-out;
+      transform: rotate(-10deg); /* Slight tilt for uniqueness */
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .value-badge:hover {
+      transform: rotate(0deg) scale(1.1);
+      background-color: #bc4749;
+      color: #ffffff;
+    }
+
+    /* Right Section (Price, Details, Buttons) */
+    .plan-right {
+      flex: 1;
+      padding: 12px; /* Reduced padding */
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .plan-price {
+      font-size: 24px; /* Reduced font size */
+      font-weight: 700;
+      color: #157a6e;
+      margin-bottom: 10px; /* Reduced margin */
+      text-align: center;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .plan-details {
+      text-align: center;
+      margin-bottom: 12px; /* Reduced margin */
+    }
+
+    .plan-details-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px; /* Reduced gap */
+      margin-bottom: 5px;
+    }
+
+    .plan-details-row p {
+      font-size: 12px; /* Reduced font size */
+      color: #000000;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    .plan-details-row i {
+      margin-right: 4px; /* Reduced margin */
+      font-size: 14px; /* Reduced icon size */
+      color: #157a6e;
+    }
+
+    /* Buttons */
+    .plan-buttons {
+      display: flex;
+      gap: 10px; /* Reduced gap */
+    }
+
+    .plan-button {
+      padding: 8px 16px; /* Reduced padding */
+      border: none;
+      border-radius: 5px; /* Smaller radius */
+      font-size: 12px; /* Reduced font size */
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      width: 100px; /* Reduced width */
+      text-align: center;
+    }
+
+    .view-details-btn {
+      background-color: #b5ffe1;
+      color: #157a6e;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Smaller shadow */
+    }
+
+    .view-details-btn:hover {
+      background-color: #f6af65;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .buy-plan-btn {
+      background-color: #157a6e;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Smaller shadow */
+    }
+
+    .buy-plan-btn:hover {
+      background-color: #bc4749;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Modal Styles (Unchanged as Requested) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      position: relative;
+      animation: zoomIn 0.5s ease-out;
+    }
+
+    .modal-price {
+      background: #f6af65;
+      color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+      font-weight: 700;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    .modal-details {
+      list-style: none;
+      padding: 0;
+    }
+
+    .modal-details li {
+      font-size: 16px;
+      color: #000000;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-details i {
+      color: #157a6e;
+      font-size: 18px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: #bc4749;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: #f6af65;
+      transform: scale(1.1);
+    }
+
+    /* Animations */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes bounceIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .plan-card {
+        flex-direction: column;
+        max-width: 100%;
+      }
+      .plan-left, .plan-right {
+        width: 100%;
+        padding: 12px;
+      }
+      .plan-price {
+        font-size: 20px; /* Further reduced for mobile */
+      }
+      .plan-details-row {
+        flex-direction: column;
+        gap: 6px;
+      }
+      .plan-buttons {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .plan-button {
+        width: 100%;
+      }
+      .value-badge {
+        position: static;
+        margin: 0 auto 8px;
+        transform: rotate(0deg); /* Reset tilt on mobile */
+      }
+      .modal-content {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="plan-card-container">
+    <div class="plan-card">
+      <!-- Left Section (Plan Name and Badge) -->
+      <div class="plan-left">
+        <h3>Popular Plan - 2 GB/day</h3>
+        <div class="value-badge">Best Value</div>
+      </div>
+
+      <!-- Right Section (Price, Details, Buttons) -->
+      <div class="plan-right">
+        <div class="plan-price">₹399</div>
+        <div class="plan-details">
+          <div class="plan-details-row">
+            <p><i class="fas fa-cloud"></i> <strong>Data:</strong> 2 GB/day</p>
+            <p><i class="fas fa-calendar-alt"></i> <strong>Validity:</strong> 28 days</p>
+          </div>
+          <div class="plan-details-row">
+            <p><i class="fas fa-phone"></i> <strong>Calls:</strong> Unlimited</p>
+            <p><i class="fas fa-sms"></i> <strong>SMS:</strong> Unlimited</p>
+          </div>
+        </div>
+        <div class="plan-buttons">
+          <button class="plan-button view-details-btn" onclick="openModal()">View Details</button>
+          <button class="plan-button buy-plan-btn" onclick="buyPlan()">Buy Plan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal (Unchanged as Requested) -->
+  <div id="planModal" class="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">×</button>
+      <div class="modal-price">₹399</div>
+      <ul class="modal-details">
+        <li><i class="fas fa-signal"></i> <strong>Plan Name:</strong> Popular Plan - 2 GB/day</li>
+        <li><i class="fas fa-cloud"></i> <strong>Data:</strong> 2 GB/day for high-speed internet, ideal for streaming and browsing</li>
+        <li><i class="fas fa-calendar-alt"></i> <strong>Validity:</strong> 28 days, with automatic renewal options</li>
+        <li><i class="fas fa-phone"></i> <strong>Calls:</strong> Unlimited local and national calls</li>
+        <li><i class="fas fa-sms"></i> <strong>SMS:</strong> Unlimited SMS for seamless communication</li>
+        <li><i class="fas fa-video"></i> <strong>Benefits:</strong> Free access to streaming platforms, 100 SMS/day bonus, and night-time unlimited data</li>
+        <li><i class="fas fa-star"></i> <strong>Usage Note:</strong> Perfect for daily streaming and heavy usage</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Modal Functions
+    function openModal() {
+      document.getElementById('planModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('planModal').style.display = 'none';
+    }
+
+    function buyPlan() {
+      alert('Proceeding to purchase the Popular Plan - 2 GB/day for ₹399. Redirecting to payment page...');
+      // Add actual purchase logic or redirect here
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('planModal');
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

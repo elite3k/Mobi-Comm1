@@ -1,392 +1,1122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page</title>
-  <link rel="stylesheet" href="css/main.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobi-Comm Homepage</title>
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- For social icons -->
+    <style>
+      /* Base Styles */
+      body {
+        font-family: "Cabin", sans-serif;
+      }
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+      /* Navbar Styles (Unchanged, Default) */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #157a6e;
+        padding: 10px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-  <style>
-  
-    .navbar {
-      background-color: #234331;
-    }
-    .navbar-brand, .nav-link, .navbar-text {
-      color: white !important;
-    }
+      .navbar-brand {
+        font-family: "Orbitron", sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: #f6af65;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
+        animation: glow 2s infinite alternate;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
 
-    .dropdown-item{
-        color: black;
-    }
+      @keyframes glow {
+        0% {
+          text-shadow: 0 0 10px rgba(246, 175, 101, 0.8);
+        }
+        100% {
+          text-shadow: 0 0 20px rgba(246, 175, 101, 1),
+            0 0 30px rgba(181, 255, 225, 0.5);
+        }
+      }
 
-    .card-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+      .navbar-brand:hover {
+        transform: scale(1.05);
+        color: #b5ffe1;
+      }
 
+      .nav-links {
+        display: flex;
+        gap: 40px;
+      }
 
-    .plan-card {
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  height: 100%;
-}
+      .nav-links a {
+        color: #f6af65;
+        font-size: 18px;
+        font-weight: 500;
+        text-decoration: none;
+        position: relative;
+        transition: color 0.3s ease;
+      }
 
-.plan-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.15);
-}
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -5px;
+        left: 0;
+        background-color: #b5ffe1;
+        transition: width 0.3s ease;
+      }
 
-    .recommended-plans {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .plan-card:nth-child(odd) {
-      margin-top: 40px;
-    }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
 
+      .nav-links a:hover {
+        color: #b5ffe1;
+      }
 
-    .footer {
-      background-color: #234331;
-      color: white;
-      padding: 10px 0;
-      margin-top: 70px;
-      text-align: left;
-    }
-    .footer a {
-      color: white;
-      text-decoration: none;
-    }
-    .footer a:hover {
-      text-decoration: underline;
-    }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
 
-    .footer .col-md-4:last-child {
-    padding-left: 240px; 
-    text-align: left; /
-}
-    .social-icons i {
-      font-size: 20px;
-      margin: 0 10px;
-    }
+      .profile-icon {
+        width: 40px;
+        height: 40px;
+        background: #f6af65;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #157a6e;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
 
-    .social-icons i:hover{
-      color: #FFB000; 
-    }
+      .profile-icon:hover {
+        transform: rotate(360deg);
+        background: #bc4749;
+      }
 
+      /* Shining Line Below Navbar */
+      .navbar::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, transparent, #134732, transparent);
+        animation: shine 3s infinite linear;
+      }
 
-.custom-btn:hover{
-  background-color: #5C8374;
-  color: black;
-}
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
 
-  </style>
-</head>
-<body>
+      /* Carousel Styles (Unchanged, Matching Your Design) */
+      .carousel-section {
+        margin-top: 80px; /* Account for fixed navbar */
+        text-align: center;
+      }
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-      <a class="navbar-brand" href="Homepage.html">Mobi-Comm</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item ms-4"><a class="nav-link" href="Homepage.html">Home</a></li>
-          <li class="nav-item ms-4"><a class="nav-link" href="PlansPage2.html">Plans</a></li>
-          <!-- <li class="nav-item ms-4"><a class="nav-link" href="Recharge.html">Plans</a></li> -->
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search">
-          <button class="btn btn-outline-light" type="submit">Search</button>
-        </form>
-        <div class="dropdown ms-3">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-            <i class="fas fa-user"></i>
-          </a>
-          <ul class="dropdown-menu aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="MyAccount.html">My Account</a></li>
-            <li><a class="dropdown-item" href="LoginUser.html">Sign Out</a></li>
+      .carousel {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+
+      .carousel-inner {
+        background: none;
+        border-radius: 0;
+      }
+
+      .carousel-item {
+        position: relative;
+        height: 400px;
+        overflow: hidden;
+      }
+
+      .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+      }
+
+      .carousel-item::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.432);
+        z-index: 1;
+        border-radius: 20px;
+      }
+
+      .carousel-caption {
+        position: relative;
+        z-index: 2;
+      }
+
+      .carousel-caption h5 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #f6af65;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease;
+      }
+
+      .carousel-caption h5:hover {
+        transform: scale(1.05);
+      }
+
+      .carousel-caption p {
+        font-size: 20px;
+        color: #ffffff;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      }
+
+      .custom-btn {
+        background-color: #157a6e;
+        border: none;
+        padding: 0.3rem;
+        width: 9rem;
+        border-radius: 0.5rem;
+        color: white;
+        box-shadow: 0 0.2rem #316350;
+        cursor: pointer;
+        position: relative;
+        top: -10px;
+        transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+      }
+
+      .custom-btn:hover:not(:disabled) {
+        background: #316350;
+        color: white;
+        text-shadow: 0 0.05rem #bcb4b4;
+        transform: translateY(-2px);
+        box-shadow: 0 0.3rem #316350;
+      }
+
+      .custom-btn:active {
+        color: white;
+        box-shadow: 0 0.1rem #dfd9d9;
+        transform: translateY(0.1rem);
+      }
+
+      .custom-btn:disabled {
+        cursor: auto;
+        color: grey;
+      }
+
+      /* User’s Current Plan (Placeholder, Hold for Now) */
+      .current-plan {
+        margin: 50px auto;
+        text-align: center;
+        max-width: 1200px;
+        color: #000000;
+      }
+
+      .current-plan h2 {
+        font-size: 32px;
+        color: #f6af65;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      /* Enhanced Recommended Plans with LoginUser.html Card Design */
+      .recommended-plans {
+        margin: 50px auto;
+        text-align: center;
+        max-width: 1200px;
+      }
+
+      .recommended-plans h2 {
+        font-size: 32px;
+        color: #f6af65;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .recommended-card-container {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;
+      }
+
+      .recommended-card {
+        position: relative;
+        width: 260px;
+        height: 360px;
+        background-color: rgb(239, 240, 244);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 20px;
+        gap: 10px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .recommended-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        left: -5px;
+        margin: auto;
+        width: 270px;
+        height: 370px;
+        border-radius: 10px;
+        background: linear-gradient(-45deg, #1ce1ff 0%, #0f4a3c 100%);
+        z-index: -10;
+        pointer-events: none;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .recommended-card::after {
+        content: "";
+        z-index: -1;
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(-45deg, #184f40 0%, #53b2c9 100%);
+        transform: translate3d(0, 0, 0) scale(0.95);
+        filter: blur(20px);
+      }
+
+      .recommended-card-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .recommended-card-subheading {
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffb000;
+        margin-bottom: 10px;
+      }
+
+      .recommended-card-list {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+        margin: 0;
+      }
+
+      .recommended-card-list li {
+        font-size: 16px;
+        padding: 5px 0;
+      }
+
+      .recommended-card-list li.tick::before {
+        content: "✔";
+        color: green;
+        margin-right: 5px;
+      }
+
+      .recommended-card:hover::after {
+        filter: blur(30px);
+      }
+
+      .recommended-card:hover::before {
+        transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
+      }
+
+      .recommended-card-button {
+        margin-top: 15px;
+        padding: 8px 18px;
+        border: none;
+        background-color: #157a6e;
+        color: #ffffff;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .recommended-card-button:hover {
+        background-color: #417863;
+      }
+
+      /* Updated Featured Plans (One Card Per Row, Positioned Left/Right, Subtle #B5FFE1 Background) */
+      .featured-plans {
+        margin: 50px auto;
+        text-align: center;
+        max-width: 1200px;
+      }
+
+      .featured-plans h2 {
+        font-size: 32px;
+        color: #f6af65;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .featured-card-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .featured-card {
+        width: 100%; /* Full width for each card */
+        max-width: 1000px; /* Limit max width for readability */
+        height: 250px; /* Maintain same height */
+        background: rgba(181, 255, 225, 0.2); /* Subtle #B5FFE1 shade */
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+
+      .featured-card-left {
+        margin-left: 200px; /* Align to left margin */
+      }
+
+      .featured-card-right {
+        margin-right: 0px; /* Align to right margin */
+      }
+
+      .featured-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .featured-card-content {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .featured-card-title {
+        font-size: 24px;
+        color: #157a6e;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .featured-card-text {
+        font-size: 16px;
+        color: #000000;
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+
+      .featured-card-price {
+        font-size: 18px;
+        color: #f6af65;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .featured-card-data {
+        font-size: 16px;
+        color: #000000;
+        margin-bottom: 5px;
+      }
+
+      .featured-card-benefit {
+        font-size: 16px;
+        color: #000000;
+        font-style: italic;
+      }
+
+      .featured-card-img,
+      .featured-card-img-right {
+        width: 40%; /* Reduced width for slanting effect */
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .featured-card-img {
+        border-radius: 0 0 0 15px; /* Slanting bottom-left */
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      }
+
+      .featured-card-img-right {
+        border-radius: 0 0 15px 0; /* Slanting bottom-right */
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+      }
+
+      .featured-card:hover .featured-card-img,
+      .featured-card:hover .featured-card-img-right {
+        transform: scale(1.05);
+      }
+
+      .featured-get-now {
+        margin-top: 12px;
+        margin-left: 200px;
+        padding: 0.3rem;
+        width: 9rem;
+        border: none;
+        background-color: #157a6e;
+        color: #ffffff;
+        border-radius: 0.5rem;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 0.2rem #316350;
+        transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+        position: relative;
+        top: -10px;
+      }
+
+      .featured-get-now:hover:not(:disabled) {
+        background: #316350;
+        color: white;
+        text-shadow: 0 0.05rem #bcb4b4;
+        transform: translateY(-2px);
+        box-shadow: 0 0.3rem #316350;
+      }
+
+      .featured-get-now:active {
+        color: white;
+        box-shadow: 0 0.1rem #dfd9d9;
+        transform: translateY(0.1rem);
+      }
+
+      .featured-get-now:disabled {
+        cursor: auto;
+        color: grey;
+      }
+
+      /* Coverage Section with Centered Map and Closing Icon */
+      .coverage-section {
+        margin: 50px auto;
+        max-width: 1200px;
+        text-align: center;
+      }
+
+      .coverage-title {
+        font-size: 32px;
+        color: #f6af65;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .coverage-text {
+        font-size: 18px;
+        color: #000000;
+        margin-bottom: 20px;
+      }
+
+      .coverage-map {
+        background: rgba(181, 255, 225, 0.2);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        animation: zoomIn 1.5s ease-in-out;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @keyframes zoomIn {
+        from {
+          transform: scale(0.8);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .map-image {
+        width: 50%;
+        border-radius: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .map-image:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .coverage-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        background: #ffffff;
+        border: 2px solid #157a6e;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        color: #157a6e;
+        font-size: 18px;
+        transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+
+      .coverage-close:hover {
+        background: #f6af65;
+        color: #ffffff;
+        border-color: #f6af65;
+        transform: scale(1.1);
+      }
+
+      .coverage-button {
+        margin-top: 0.3rem;
+        width: 9rem;
+        border: none;
+        background-color: #157a6e;
+        color: #ffffff;
+        border-radius: 0.5rem;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 0.2rem #316350;
+        transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+        position: relative;
+        top: -10px;
+      }
+
+      .coverage-button:hover:not(:disabled) {
+        background: #316350;
+        color: white;
+        text-shadow: 0 0.05rem #bcb4b4;
+        transform: translateY(-2px);
+        box-shadow: 0 0.3rem #316350;
+      }
+
+      .coverage-button:active {
+        color: white;
+        box-shadow: 0 0.1rem #dfd9d9;
+        transform: translateY(0.1rem);
+      }
+
+      .coverage-button:disabled {
+        cursor: auto;
+        color: grey;
+      }
+
+      /* Rest of your styles (unchanged) */
+      .recharge-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: right;
+        margin-top: 50px;
+        margin-left: 40px;
+      }
+      .recharge-box {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(243, 222, 71, 0.1);
+        width: 40%;
+      }
+      .card-container {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+      }
+      .card {
+        position: relative;
+        width: 260px;
+        height: 360px;
+        background-color: rgb(239, 240, 244);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 20px;
+        gap: 10px;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        left: -5px;
+        margin: auto;
+        width: 270px;
+        height: 370px;
+        border-radius: 10px;
+        background: linear-gradient(-45deg, #1ce1ff 0%, #0f4a3c 100%);
+        z-index: -10;
+        pointer-events: none;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .card::after {
+        content: "";
+        z-index: -1;
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(-45deg, #184f40 0%, #53b2c9 100%);
+        transform: translate3d(0, 0, 0) scale(0.95);
+        filter: blur(20px);
+      }
+      .heading {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      .subheading {
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffb000;
+        margin-bottom: 10px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+        margin: 0;
+      }
+      ul li {
+        font-size: 16px;
+        padding: 5px 0;
+      }
+      .tick::before {
+        content: "✔";
+        color: green;
+        margin-right: 5px;
+      }
+      .card:hover::after {
+        filter: blur(30px);
+      }
+      .card:hover::before {
+        transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
+      }
+
+      /* Updated Footer Styles */
+      footer {
+        background-color: #157a6e;
+        color: #ffffff;
+        padding: 30px 0;
+        margin-top: 50px;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .footer-column {
+        flex: 1;
+        padding: 0 20px;
+      }
+
+      .footer-column h5 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #f6af65;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        font-size: 14px;
+        color: #ffffff;
+        text-decoration: none;
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+
+      .footer-column a:hover {
+        color: #b5ffe1;
+      }
+
+      .social-icons {
+        margin-top: 15px;
+      }
+
+      .social-icons a {
+        color: #ffffff;
+        font-size: 20px;
+        margin-right: 15px;
+        transition: color 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: #f6af65;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- New Navbar (Default) -->
+    <nav class="navbar">
+      <div class="navbar-brand">Mobi-Comm</div>
+      <div class="nav-links">
+        <a href="Homepage.html">Home</a>
+        <a href="PlansPage2.html">Plans</a>
+        <a href="Aboutuspage.html">About Us</a>
+      </div>
+      <div class="nav-right">
+        <div class="profile-icon" title="User Profile">K</div>
+      </div>
+    </nav>
+
+    <!-- Carousel Section (Unchanged, Matching Your Design) -->
+    <div class="carousel-section">
+      <div
+        id="carouselExampleDark"
+        class="carousel carousel-dark slide w-75 mx-auto mt-5"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img
+              src="Assets/Images/Stayconnected.jpg"
+              class="d-block w-100 rounded-4"
+              style="height: 400px; object-fit: cover"
+              alt="..."
+            />
+            <div
+              class="carousel-caption position-absolute top-0 start-0 text-start ms-3 mt-3"
+            >
+              <h5 class="fw-bolder text-secondary fs-3">
+                Stay Connected, Anytime, Anywhere
+              </h5>
+              <p class="text-danger fs-5">
+                Experience seamless communication with our fast and secure
+                mobile recharge services.
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <img
+              src="Assets/Images/pay-goods-by-credit-card-through-smartphone-coffee-shop.jpg"
+              class="d-block w-100 rounded-4"
+              style="height: 400px; object-fit: cover"
+              alt="..."
+            />
+            <div
+              class="carousel-caption position-absolute top-0 end-0 text-end me-3 mt-3"
+            >
+              <h5 class="text-secondary fw-bolder fs-3">
+                Fast, Reliable & Secure
+              </h5>
+              <p class="text-danger fs-5">
+                Recharge in seconds with multiple payment options and robust
+                security.
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <img
+              src="Assets/Images/pexels-cottonbro-4065146.jpg"
+              class="d-block w-100 rounded-4"
+              style="height: 400px; object-fit: cover"
+              alt="..."
+            />
+            <div class="carousel-caption position-absolute">
+              <h5 class="text-secondary fw-bolder fs-3">
+                Simplified Recharges, Hassle-Free
+              </h5>
+              <p class="text-danger fs-5">
+                No more long queues—just quick and easy top-ups from the comfort
+                of your home.
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- User’s Current Plan (Placeholder, Hold for Now) -->
+    <div class="current-plan">
+      <h2>Your Current Plan</h2>
+    </div>
+    <br /><br /><br />
+
+    <!-- Enhanced Recommended Plans with LoginUser.html Card Design -->
+    <div class="recommended-plans">
+      <h2>Recommended Plans for You</h2>
+      <br><br>
+      <div class="recommended-card-container">
+        <div class="recommended-card">
+          <p class="recommended-card-title">Popular Plan - 2 GB/day</p>
+          <p class="recommended-card-subheading">Unlimited Calls & SMS</p>
+          <ul class="recommended-card-list">
+            <li class="tick">28-day validity</li>
+            <li class="tick">Perfect for daily streaming</li>
+            <li class="tick">Price: ₹399</li>
           </ul>
+          <button
+            class="recommended-card-button"
+            onclick="window.location.href='PlansPage2.html'"
+          >
+            Explore Now
+          </button>
+        </div>
+        <div class="recommended-card">
+          <p class="recommended-card-title">Data Booster - 3 GB/day</p>
+          <p class="recommended-card-subheading">Unlimited Calls & SMS</p>
+          <ul class="recommended-card-list">
+            <li class="tick">56-day validity</li>
+            <li class="tick">Ideal for heavy data use</li>
+            <li class="tick">Price: ₹599</li>
+          </ul>
+          <button
+            class="recommended-card-button"
+            onclick="window.location.href='PlansPage2.html'"
+          >
+            Explore Now
+          </button>
+        </div>
+        <div class="recommended-card">
+          <p class="recommended-card-title">Long Validity - 1.5 GB/day</p>
+          <p class="recommended-card-subheading">Unlimited Calls & SMS</p>
+          <ul class="recommended-card-list">
+            <li class="tick">84-day validity</li>
+            <li class="tick">Great for light users</li>
+            <li class="tick">Price: ₹299</li>
+          </ul>
+          <button
+            class="recommended-card-button"
+            onclick="window.location.href='PlansPage2.html'"
+          >
+            Explore Now
+          </button>
         </div>
       </div>
     </div>
-  </nav>
+    <br /><br />
 
-  <!-- Carousel -->
-  <div id="carouselExampleDark" class="carousel carousel-dark slide w-75 mx-auto mt-4" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="10000">
-        <img src="Assets/Images/Stayconnected.jpg" class="d-block w-100 rounded-4" style="height: 400px; object-fit: cover;" alt="...">
-        <div class="carousel-caption position-absolute top-0 start-0 text-start ms-3 mt-3">
-          <h5 class="fw-bolder text-secondary fs-3">Stay Connected, Anytime, Anywhere</h5>
-          <p class="text-danger fs-5">Experience seamless communication with our fast and secure mobile recharge services.</p>
+    <!-- Updated Featured Plans (One Card Per Row, Positioned Left/Right, Subtle #B5FFE1 Background) -->
+    <div class="featured-plans">
+      <h2>Featured Plans</h2><br><br>
+      <br />
+      <div class="featured-card-container">
+        <!-- Student Plan (Near Left Margin) -->
+        <div class="featured-card featured-card-left">
+          <img
+            src="Assets/Images/2148888839.jpg"
+            class="featured-card-img"
+            alt="Student Plan"
+          />
+          <div class="featured-card-content">
+            <h3 class="featured-card-title fs-3">Most used Student Plan</h3>
+            <p class="featured-card-text">Affordable plans for students.</p>
+            <p class="featured-card-price">₹199–₹399/month</p>
+            <p class="featured-card-data">1.5 GB/day to 3 GB/day</p>
+            <p class="featured-card-benefit">
+              Unlimited calls & 50% bonus data!
+            </p>
+            <button
+              class="featured-get-now"
+              onclick="window.location.href='PlansPage2.html'"
+            >
+              Get Now
+            </button>
+          </div>
         </div>
-      </div>
-   
-    
-      <div class="carousel-item" data-bs-interval="2000">
-        <img src="Assets/Images/pexels-mikhail-nilov-6969653.jpg" class="d-block w-100 rounded-4" style="height: 400px; object-fit:cover;" alt="...">
-        <div class="carousel-caption position-absolute top-0 end-0 text-end me-3 mt-3">
-          <h5 class="text-secondary fw-bolder fs-3">Fast, Reliable & Secure</h5>
-          <p class="text-danger fs-5">Recharge in seconds with multiple payment options and robust security.</p>
+        <br />
+        <!-- IT Professional Plan (Near Right Margin) -->
+        <div class="featured-card featured-card-right">
+          <img
+            src="Assets/Images/2149241221.jpg"
+            class="featured-card-img-right"
+            alt="IT Professional Plan"
+          />
+          <div class="featured-card-content">
+            <h3 class="featured-card-title fs-3">
+              Convincing IT Professional Plan
+            </h3>
+            <p class="featured-card-text">Robust plans for tech pros.</p>
+            <p class="featured-card-price">₹499–₹799/month</p>
+            <p class="featured-card-data">3 GB/day to 5 GB/day</p>
+            <p class="featured-card-benefit">Night-time unlimited data!</p>
+            <button
+              class="featured-get-now"
+              onclick="window.location.href='PlansPage2.html'"
+            >
+              Get Now
+            </button>
+          </div>
         </div>
-      </div>
-      
-      <div class="carousel-item">
-        <img src=" Assets/Images/pexels-cottonbro-4065146.jpg" class="d-block w-100 rounded-4" style="height: 400px; object-fit:cover;" alt="...">
-        <div class="carousel-caption d-none d-md-block text-start">
-          <h5 class="text-secondary fw-bolder fs-3">Simplified Recharges, Hassle-Free</h5>
-          <p class="text-danger fs-5">No more long queues—just quick and easy top-ups from the comfort of your home.</p>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-
-  <!-- Mobi-Comm Offers Section -->
-  <p class="text-white text-center p-2 mt-4" style="background-color: #234331; display: inline-block; width: 100%;">Exclusive Offer! Get 10% cashback with this voucher: CASHBACK10</p>
-
-<br><br><br>
-  <h2 class="display-6 text-center text-secondary"><b>Popular</b> Plans</h2>
-
-
-<!-- Cards Section -->
-<div class="container mt-4">
-  <div class="row">
-    <!-- Plan 1 -->
-    <div class="col-md-4 mb-4">
-      <div class="card plan-card">
-        <div class="card-body">
-          <span class="badge bg-secondary mb-3">Unlimited</span>
-          <h5 class="card-title"><mark>₹299</mark> - Unlimited Data</h5>
-          <p class="card-text">
-            Validity: 30 days<br>
-            Data: Unlimited (Fair Usage Policy Applies)<br>
-            Free Calls: Unlimited Local & STD<br>
-            Free SMS: 100/day<br>
-          </p>
-          <a href="Payment.html" class="btn btn-primary custom-btn">Buy Plan</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Plan 2 -->
-    <div class="col-md-4 mb-4">
-      <div class="card plan-card">
-        <div class="card-body">
-          <span class="badge bg-secondary mb-3">Family</span>
-          <h5 class="card-title"><mark>₹499</mark> - 1GB/Day</h5>
-          <p class="card-text">
-            Validity: 60 days<br>
-            Data: 1GB/day<br>
-            Free Calls: Unlimited Local & STD<br>
-            Free SMS: 100/day<br>
-          </p>
-          <a href="Payment.html" class="btn btn-primary custom-btn">Buy Plan</a>
+        <br />
+        <!-- Festivals/Entertainment Plan (Near Left Margin) -->
+        <div class="featured-card featured-card-left">
+          <img
+            src="Assets/Images/65392.jpg"
+            class="featured-card-img"
+            alt="Festival Plan"
+          />
+          <div class="featured-card-content">
+            <h3 class="featured-card-title fs-3">
+              Unlimited joy using Entertainment Plan
+            </h3>
+            <p class="featured-card-text">Special plans for events.</p>
+            <p class="featured-card-price">₹299–₹599/month</p>
+            <p class="featured-card-data">2 GB/day to 4 GB/day</p>
+            <p class="featured-card-benefit">Free streaming for 7 days!</p>
+            <button
+              class="featured-get-now"
+              onclick="window.location.href='PlansPage2.html'"
+            >
+              Get Now
+            </button>
+          </div>
         </div>
       </div>
     </div>
+    <br />
+    <br />
 
-    <!-- Plan 3 -->
-    <div class="col-md-4 mb-4">
-      <div class="card plan-card">
-        <div class="card-body">
-          <span class="badge bg-secondary mb-3">Entertainment</span>
-          <h5 class="card-title"><mark>₹199</mark> - 500MB/Day</h5>
-          <p class="card-text">
-            Validity: 28 days<br>
-            Data: 500MB/day<br>
-            Free Calls: Unlimited Local & STD<br>
-            Free SMS: 100/day<br>
-          </p>
-          <a href="Payment.html" class="btn btn-primary custom-btn">Buy Plan</a>
-        </div>
+    <!-- Coverage Section with Centered Map, Closing Icon, and Hover Effects -->
+    <div class="coverage-section">
+      <h2 class="coverage-title">Our Network Coverage</h2>
+      <p class="coverage-text">
+        Enjoy strong signals across India with Mobi-Comm’s wide coverage.
+      </p>
+      <div class="coverage-map">
+        <img
+          src="Assets/Images/male-builder-construction.jpg"
+          alt="Coverage Map"
+          class="map-image"
+        />
+        <span class="coverage-close" onclick="hideImage()">×</span>
+        <img
+          id="coverage-image"
+          src="Assets/Images/Indiamap.jpg"
+          style="display: none; margin-top: 10px; width: 50%; border-radius: 10px"
+        />
       </div>
-    </div>
-  </div>
-</div>
-
-<br><br><br>
-<h2 class="display-6 text-center text-secondary"><b>Exclusive</b> Plans</h2>
-
-<!-- Exclusive Plans Section -->
-<div class="container mt-4">
-  <div class="row">
-    <!-- Exclusive Plan 1 -->
-    <div class="col-md-4 mb-4">
-      <div class="card plan-card">
-        <div class="card-body">
-          <span class="badge bg-secondary mb-3">Unlimited</span>
-          <h5 class="card-title"><mark>₹299</mark> - Unlimited Data</h5>
-          <p class="card-text">
-            Validity: 30 days<br>
-            Data: Unlimited (Fair Usage Policy Applies)<br>
-            Free Calls: Unlimited Local & STD<br>
-            Free SMS: 100/day<br>
-            Free Roaming: Available<br>
-            Free Incoming Calls: Available<br>
-            Unlimited Pack: Add 2 additional numbers<br>
-          </p>
-          <a href="Payment.html" class="btn btn-primary custom-btn">Buy Plan</a>
-        </div>
-      </div>
+      <button class="coverage-button" onclick="showImage()">
+        Check Coverage
+      </button>
     </div>
 
-    <!-- Exclusive Plan 2 -->
-    <div class="col-md-4 mb-4">
-      <div class="card plan-card">
-        <div class="card-body">
-          <span class="badge bg-secondary mb-3">Family</span>
-          <h5 class="card-title"><mark>₹499</mark> - 1GB/Day</h5>
-          <p class="card-text">
-            Validity: 60 days<br>
-            Data: 1GB/day<br>
-            Free Calls: Unlimited Local & STD<br>
-            Free SMS: 100/day<br>
-            Free Roaming: Available<br>
-            Free Incoming Calls: Available<br>
-            Family Pack: Add 2 additional numbers<br>
-          </p>
-          <a href="Payment.html" class="btn btn-primary custom-btn">Buy Plan</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Exclusive Plan 3 -->
-    <div class="col-md-4 mb-4">
-      <div class="card plan-card">
-        <div class="card-body">
-          <span class="badge bg-secondary mb-3">Entertainment</span>
-          <h5 class="card-title"><mark>₹199</mark> - 500MB/Day</h5>
-          <p class="card-text">
-            Validity: 28 days<br>
-            Data: 500MB/day<br>
-            Free Calls: Unlimited Local & STD<br>
-            Free SMS: 100/day<br>
-            Free Roaming: Available<br>
-            Free Incoming Calls: Available<br>
-            Entertainment Pack: Free access to popular streaming apps<br>
-          </p>
-          <a href="Payment.html" class="btn btn-primary custom-btn">Buy Plan</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br>
-<!-- Cards/sections-->
-  <section class="container my-5">
-    <h2 class="text-center mb-4 display-6 text-secondary">Mobi-Comm <b>Features</b></h2> 
-<br>
-    <div class="d-flex justify-content-center gap-4 flex-wrap">
-        <div class="plan-card card text-white p-4 d-flex align-items-center justify-content-center" 
-             style="width: 300px; height: 200px; background: url('Assets/Images/Secure\ transaction.avif') no-repeat center center/cover;">
-            <div class="overlay  w-100 h-100 d-flex align-items-center justify-content-center">
-                <h5 class="text-center">Secure Transactions</h5>
-            </div>
-        </div>
-        <div class="plan-card card text-white p-4 d-flex align-items-center justify-content-center" 
-             style="width: 300px; height: 200px; background: url('Assets/Images/Fast\ Recharge.avif') no-repeat center center/cover;">
-            <div class="overlay text-light fw-bold w-100 h-100 d-flex align-items-center justify-content-center">
-                <h5 class="text-center">Fast Recharge</h5>
-            </div>
-        </div>
-        
-        <div class="plan-card card text-white p-4 d-flex align-items-center justify-content-center" 
-             style="width: 300px; height: 200px; background: url('Assets/Images/Multiple\ payment.avif') no-repeat center center/cover;">
-            <div class="overlay w-100 h-100 d-flex align-items-center justify-content-center">
-                <h5 class="text-center">Multiple Payment Options</h5>
-            </div>
-        </div>
-        <div class="plan-card card text-white p-4 d-flex align-items-center justify-content-center" 
-             style="width: 300px; height: 200px; background: url('Assets/Images/Customer\ support.webp') no-repeat center center/cover;">
-            <div class="overlay w-100 h-100 d-flex align-items-center justify-content-center">
-                <h5 class="text-center">24/7 Support</h5>
-            </div>
-        </div>
-    </div>
-</section> 
-
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 mt-5">
-          <h5>About Mobi-Comm</h5>
+    <!-- Updated Footer (Default) -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-column">
+          <h5>Quick Links</h5>
           <p><a href="Aboutuspage.html">About Us</a></p>
           <p><a href="FAQsPage.html">FAQs</a></p>
-         
           <p><a href="MyAccount.html">My Account</a></p>
           <p><a href="https://commonsupportcentre.com/">Support</a></p>
         </div>
-
-        <div class="col-md-4 mt-5" style="padding-left: 60px;">
+        <div class="footer-column">
           <h5>Mobi-Comm</h5>
-          <p>Mobi-Comm is an advanced mobile communication and prepaid recharge system...</p>
+          <p>
+            Empowering connections with fast recharges and reliable service.
+          </p>
           <div class="social-icons">
-            <a href="https://www.instagram.com/yourusername" target="_blank">
-              <i class="fab fa-instagram"></i>
-            </a>
-            
-            <a href="https://www.facebook.com/yourusername" target="_blank" >
-              <i class="fab fa-facebook"></i>
-            </a>
-            
-            <a href="https://www.twitter.com/yourusername" target="_blank" >
-              <i class="fab fa-twitter"></i>
-            </a>
-            
-            <a href="https://www.youtube.com/yourchannel" target="_blank">
-              <i class="fab fa-youtube"></i>
-            </a>
-            
-            <a href="https://www.linkedin.com/in/yourprofile" target="_blank">
-              <i class="fab fa-linkedin"></i>
-            </a>
+            <a href="https://www.instagram.com/yourusername" target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.facebook.com/yourusername" target="_blank"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.twitter.com/yourusername" target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/yourchannel" target="_blank"
+              ><i class="fab fa-youtube"></i
+            ></a>
+            <a href="https://www.linkedin.com/in/yourprofile" target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
           </div>
         </div>
-
-
-        <div class="col-md-4 mt-5">
-          <h5>Plans Available</h5>
-          <p><a href="PlansPage2.html">Popular Plans</a></p>
-          <p><a href="PlansPage2.html">Unlimited Plans</a></p>
-          <p><a href="PlansPage2.html">Validity Plans</a></p>
-
-          <p><a href="PlansPage2.html">Data Plans</a></p>
-          <p><a href="PlansPage2.html">Entertainment Plans</a></p>
-          <p><a href="PlansPage2.html">Annual Plans</a></p>
+        <div class="footer-column">
+          <h5>Contact Us</h5>
+          <p>Mobi-Comm Headquarters</p>
+          <p>123 Telecom Street, Tech City, India - 560001</p>
+          <p>Phone: +91 9876543210</p>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function showImage() {
+        document.getElementById("coverage-image").style.display = "block";
+      }
 
-</body>
+      function hideImage() {
+        document.getElementById("coverage-image").style.display = "none";
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

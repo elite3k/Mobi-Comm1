@@ -1,141 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Page</title>
-    <link rel="stylesheet" href="css/main.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        .payment-container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            width: 450px;
-            text-align: center;
-        }
-        .btn-custom {
-            background-color: #004225;
-            color: white;
-        }
-        .btn-custom:hover {
-            background-color: #5C8374;
-            color: black;
-        }
-        .payment-details {
-            display: none;
-            margin-top: 15px;
-            text-align: left;
-        }
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .icon:hover {
-            color: #FFB000;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Cabin', sans-serif;
+      font-size: 18px;
+      background-color: #f5f6fa;
+      padding: 20px;
+    }
+
+    /* Close Button */
+    .close-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      color: #bc4749;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .close-btn:hover {
+      color: #f6af65;
+      transform: scale(1.1);
+    }
+
+    /* Up Section (Plan Details Box) */
+    .up-section {
+      background: linear-gradient(135deg, #157a6e, #b5ffe1);
+      color: #ffffff;
+      padding: 30px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto 40px; /* Centered with margin bottom */
+    }
+    .plan-name {
+      font-size: 28px;
+      font-weight: 700;
+      color: #f6af65;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+    .plan-price {
+      font-size: 24px;
+      font-weight: 700;
+      color: #bc4749;
+      margin-bottom: 15px;
+    }
+    .plan-details, .plan-benefits {
+      font-size: 16px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    /* Down Section (Payment Method Selection) */
+    .down-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px; /* Increased padding for spacing */
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .payment-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #157a6e;
+      margin-bottom: 25px; /* Increased margin for spacing */
+      text-align: center;
+    }
+    .payment-methods {
+      display: flex;
+      justify-content: center;
+      gap: 25px; /* Increased gap for spacing */
+      margin-bottom: 25px; /* Increased margin for spacing */
+    }
+    .payment-method {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 16px;
+      color: #157a6e;
+      cursor: pointer;
+    }
+    .payment-method input[type="radio"] {
+      accent-color: #157a6e;
+    }
+    .payment-method i {
+      font-size: 24px;
+      color: #157a6e;
+    }
+
+    /* UPI Sub-Options */
+    .upi-options {
+      display: none;
+      flex-direction: column;
+      gap: 15px; /* Increased gap for spacing */
+      margin-bottom: 25px; /* Increased margin for spacing */
+    }
+    .upi-sub-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      color: #157a6e;
+      cursor: pointer;
+    }
+    .upi-sub-option input[type="radio"] {
+      accent-color: #157a6e;
+    }
+    .upi-sub-option i {
+      font-size: 24px;
+      color: #157a6e;
+    }
+
+    /* Input Fields */
+    .input-field {
+      margin-bottom: 20px;
+      display: none;
+    }
+    .input-field label {
+      display: block;
+      font-size: 16px;
+      color: #157a6e;
+      margin-bottom: 8px; /* Increased margin for spacing */
+    }
+    .input-field input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #b5ffe1;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #157a6e;
+    }
+    .input-field input:focus {
+      border-color: #f6af65;
+      outline: none;
+    }
+
+    /* Proceed to Pay Button */
+    .proceed-btn {
+      background-color: #157a6e;
+      color: #ffffff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      margin-top: 20px; /* Added margin for spacing */
+    }
+    .proceed-btn:hover {
+      background-color: #bc4749;
+    }
+
+    /* Email Overlay */
+    .email-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .email-modal {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px;
+      padding: 20px;
+    }
+    .email-modal h4 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #157a6e;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .email-modal input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #b5ffe1;
+      border-radius: 5px;
+      font-size: 16px;
+      color: #157a6e;
+      margin-bottom: 15px;
+    }
+    .email-modal input:focus {
+      border-color: #f6af65;
+      outline: none;
+    }
+    .email-modal button {
+      background-color: #157a6e;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+    }
+    .email-modal button:hover {
+      background-color: #bc4749;
+    }
+
+    /* Success Popup */
+    .success-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      z-index: 1001; /* Ensure above overlay */
+    }
+    .success-popup i {
+      font-size: 48px;
+      color: #157a6e;
+      margin-bottom: 15px;
+    }
+    .success-popup p {
+      font-size: 18px;
+      color: #157a6e;
+      margin-bottom: 20px;
+    }
+    .success-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    .success-button {
+      background-color: #157a6e;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .success-button:hover {
+      background-color: #bc4749;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+      .up-section, .down-section {
+        width: 90%;
+      }
+      .payment-methods, .upi-options {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .payment-method, .upi-sub-option {
+        justify-content: center;
+      }
+      .close-btn {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
 </head>
-<body class="d-flex justify-content-center align-items-center vh-100">
-    <div class="payment-container">
-        <div class="header-container">
-            <span class="icon" onclick="window.location.href='Homepage.html'">&#8592;</span>
-            <h2 class="text-secondary mb-4">Payment</h2>
-            <div></div>
-        </div>
-        <div class="p-3 mb-3 bg-info text-black rounded">
-            <p>Mobile Number: 93611155275</p>
-            <p>Plan Amount: ₹399</p>
-        </div>
-        <div class="d-grid gap-3">
-            <button class="btn btn-custom" onclick="toggleDetails('upi')">UPI (GPay, PhonePe) ➝</button>
-            <button class="btn btn-custom" onclick="toggleDetails('card')">Credit/Debit Card ➝</button>
-            <button class="btn btn-custom" onclick="toggleDetails('netbanking')">Net Banking ➝</button>
-        </div>
-        <div id="upi-details" class="payment-details">
-            <label>UPI ID:</label>
-            <input type="text" id="upi-id" class="form-control mb-2" placeholder="Enter UPI ID">
-            <small id="upi-error" class="text-danger"></small>
-        </div>
-        <div id="card-details" class="payment-details">
-            <label>Card Number:</label>
-            <input type="text" id="card-number" class="form-control mb-2" placeholder="XXXX XXXX XXXX XXXX">
-            <small id="card-error" class="text-danger"></small>
-            <label>Expiry Date:</label>
-            <input type="text" id="expiry-date" class="form-control mb-2" placeholder="MM/YY">
-            <small id="expiry-error" class="text-danger"></small>
-            <label>CVV:</label>
-            <input type="password" id="cvv" class="form-control mb-2" placeholder="XXX">
-            <small id="cvv-error" class="text-danger"></small>
-        </div>
-        <div id="netbanking-details" class="payment-details">
-            <label>Bank Name:</label>
-            <select id="bank-name" class="form-control mb-2">
-                <option value="">Select Bank</option>
-                <option value="SBI">SBI</option>
-                <option value="HDFC">HDFC</option>
-                <option value="ICICI">ICICI</option>
-                <option value="Axis">Axis</option>
-            </select>
-            <small id="bank-error" class="text-danger"></small>
-            <label>Account Number:</label>
-            <input type="text" id="account-number" class="form-control mb-2" placeholder="Enter Account Number">
-            <small id="account-error" class="text-danger"></small>
-            <label>IFSC Code:</label>
-            <input type="text" id="ifsc-code" class="form-control mb-2" placeholder="Enter IFSC Code">
-            <small id="ifsc-error" class="text-danger"></small>
-        </div>
-        <button id="pay-btn" class="btn btn-custom mt-3" onclick="validatePayment()" style="display:none;">Pay Now</button>
+<body>
+  <!-- Close Button -->
+  <button class="close-btn" onclick="window.location.href='PlansPage2.html'">×</button>
+
+  <!-- Up Section (Plan Details Box with Dummy Data) -->
+  <div class="up-section">
+    <h1 class="plan-name">Popular Plan - 2 GB/day</h1>
+    <p class="plan-price">₹399</p>
+    <p class="plan-details"><strong>Validity:</strong> 28 days</p>
+    <p class="plan-details"><strong>Data:</strong> 2 GB/day</p>
+    <p class="plan-benefits">Benefits: Unlimited Calls, Unlimited SMS, Free Streaming</p>
+  </div>
+
+  <!-- Down Section (Payment Method Selection) -->
+  <div class="down-section">
+    <h2 class="payment-title">Choose Payment Method</h2>
+    <div class="payment-methods">
+      <label class="payment-method">
+        <input type="radio" name="payment" value="upi" onclick="showUpiOptions()">
+        <i class="fas fa-wallet"></i> UPI
+      </label>
+      <label class="payment-method">
+        <input type="radio" name="payment" value="net-banking" onclick="showNetBankingInput()">
+        <i class="fas fa-university"></i> Net Banking
+      </label>
+      <label class="payment-method">
+        <input type="radio" name="payment" value="card" onclick="showCardInput()">
+        <i class="fas fa-credit-card"></i> Credit/Debit Card
+      </label>
     </div>
-    <script>
-        let selectedMethod = "";
-        
-        function toggleDetails(method) {
-            document.getElementById('upi-details').style.display = 'none';
-            document.getElementById('card-details').style.display = 'none';
-            document.getElementById('netbanking-details').style.display = 'none';
-            document.getElementById(method + '-details').style.display = 'block';
-            document.getElementById('pay-btn').style.display = 'block';
-            selectedMethod = method;
-        }
-        
-        function validatePayment() {
-            let valid = true;
-            
-            if (selectedMethod === "upi") {
-                let upi = document.getElementById("upi-id").value;
-                if (!/^[a-zA-Z0-9]+@[a-zA-Z]+$/.test(upi)) {
-                    document.getElementById("upi-error").textContent = "Invalid UPI ID (e.g., xyz@upi)";
-                    valid = false;
-                } else {
-                    document.getElementById("upi-error").textContent = "";
-                }
-            } else if (selectedMethod === "card") {
-                let cardNumber = document.getElementById("card-number").value.replace(/\s/g, '');
-                if (!/^\d{16}$/.test(cardNumber)) {
-                    document.getElementById("card-error").textContent = "Invalid Card Number (16 digits only)";
-                    valid = false;
-                }
-                if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(document.getElementById("expiry-date").value)) {
-                    document.getElementById("expiry-error").textContent = "Invalid Expiry Date (MM/YY)";
-                    valid = false;
-                }
-                if (!/^\d{3}$/.test(document.getElementById("cvv").value)) {
-                    document.getElementById("cvv-error").textContent = "Invalid CVV (3 digits)";
-                    valid = false;
-                }
-            }
-            
-            if (valid) {
-                alert("Payment Successful! Redirecting to the plan page...");
-                window.location.href = "plansPage2.html";
-            }
-        }
-    </script>
+
+    <!-- UPI Options -->
+    <div id="upi-options" class="upi-options">
+      <label class="upi-sub-option">
+        <input type="radio" name="upi" value="gpay" onclick="showUpiInput()">
+        <i class="fas fa-mobile-alt"></i> GPay
+      </label>
+      <label class="upi-sub-option">
+        <input type="radio" name="upi" value="phonepe" onclick="showUpiInput()">
+        <i class="fas fa-mobile-alt"></i> PhonePe
+      </label>
+      <div id="upi-input" class="input-field">
+        <label for="upi-number">UPI Number</label>
+        <input type="text" id="upi-number" placeholder="Enter UPI Number">
+      </div>
+    </div>
+
+    <!-- Net Banking Input -->
+    <div id="net-banking-input" class="input-field">
+      <label for="bank-account">Bank Account Number</label>
+      <input type="text" id="bank-account" placeholder="Enter Bank Account Number">
+    </div>
+
+    <!-- Credit/Debit Card Inputs -->
+    <div id="card-input" class="input-field">
+      <label for="card-number">Card Number</label>
+      <input type="text" id="card-number" placeholder="Enter Card Number">
+      <label for="expiry-date">Expiry Date</label>
+      <input type="text" id="expiry-date" placeholder="MM/YY">
+      <label for="cvv">CVV</label>
+      <input type="text" id="cvv" placeholder="Enter CVV">
+    </div>
+
+    <button class="proceed-btn" onclick="proceedToPay()">Proceed to Pay</button>
+  </div>
+
+  <!-- Email Overlay -->
+  <div id="emailOverlay" class="email-overlay">
+    <div class="email-modal">
+      <h4>Enter Email ID</h4>
+      <input type="email" id="email-input" placeholder="Enter your email">
+      <button onclick="validateEmail()">Submit</button>
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div id="successPopup" class="success-popup">
+    <i class="fas fa-check-circle"></i>
+    <p>Plan activated successfully! Plan details sent to <span id="email"></span>.</p>
+    <div class="success-buttons">
+      <button class="success-button" onclick="window.location.href='PlansPage2.html'">Go to Plans</button>
+      <button class="success-button" onclick="window.location.href='Homepage.html'">Go to Home</button>
+    </div>
+  </div>
+
+  <script>
+    function showUpiOptions() {
+      document.getElementById('upi-options').style.display = 'block';
+      document.getElementById('net-banking-input').style.display = 'none';
+      document.getElementById('card-input').style.display = 'none';
+    }
+
+    function showNetBankingInput() {
+      document.getElementById('upi-options').style.display = 'none';
+      document.getElementById('net-banking-input').style.display = 'block';
+      document.getElementById('card-input').style.display = 'none';
+    }
+
+    function showCardInput() {
+      document.getElementById('upi-options').style.display = 'none';
+      document.getElementById('net-banking-input').style.display = 'none';
+      document.getElementById('card-input').style.display = 'block';
+    }
+
+    function showUpiInput() {
+      document.getElementById('upi-input').style.display = 'block';
+    }
+
+    function proceedToPay() {
+      document.getElementById('emailOverlay').style.display = 'flex';
+    }
+
+    function validateEmail() {
+      const email = document.getElementById('email-input').value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+        document.getElementById('emailOverlay').style.display = 'none';
+        document.getElementById('successPopup').style.display = 'block';
+        document.getElementById('email').textContent = email;
+      } else {
+        alert('Please enter a valid email address.');
+      }
+    }
+  </script>
 </body>
 </html>

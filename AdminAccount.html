@@ -20,8 +20,7 @@
 
         body {
             background-color: #f8f9fa;
-         
-            
+            font-family: 'Cabin', sans-serif;
         }
 
         .account-container {
@@ -42,6 +41,7 @@
 
         .form-label {
             font-weight: bold;
+            color: var(--primary);
         }
 
         .header-container {
@@ -73,6 +73,11 @@
         .exit-btn:hover {
             background-color: var(--secondary);
         }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.2rem rgba(255, 176, 0, 0.25);
+        }
     </style>
 </head>
 
@@ -80,25 +85,29 @@
     <div class="w-50 account-container">
         <!-- Header -->
         <div class="header-container">
-            <span class="icon" onclick="window.location.href='dash.html'">&#8592;</span>
-            <h2 class="text-secondary">My Profile</h2>
+            <span class="icon" onclick="window.location.href='http://127.0.0.1:5500/AdminDashboard.html'">←</span>
+            <h2 style="color: var(--primary);">My Profile</h2>
             <div></div>
         </div>
 
         <!-- Account Details Form -->
         <form>
             <div class="mb-3">
-                <label for="name" class="form-label">Admin Name:</label>
-                <input type="text" class="form-control" id="name" value="Kevin" >
+                <label for="adminName" class="form-label">Admin Name:</label>
+                <input type="text" class="form-control" id="adminName" value="Kevin">
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Admin id:</label>
-                <input type="text" class="form-control" id="name" value="id2" >
+                <label for="adminId" class="form-label">Admin ID:</label>
+                <input type="text" class="form-control" id="adminId" value="id2" readonly>
             </div>
-           
-          
-            
-           
+            <div class="mb-3">
+                <label for="adminEmail" class="form-label">Email ID:</label>
+                <input type="email" class="form-control" id="adminEmail" value="kevin@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="adminPassword" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="adminPassword" value="password123">
+            </div>
             <button type="button" class="exit-btn" onclick="window.location.href='dash.html'">Save & Exit</button>
         </form>
     </div>
